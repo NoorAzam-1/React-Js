@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 const Counter = () => {
   const [count, setCount] = useState(0);
 
+
 // Example:
 // API Calling, Login, Data Fetching, Timer, Local Storage, 
 
