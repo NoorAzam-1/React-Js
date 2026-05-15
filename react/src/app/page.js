@@ -1,4 +1,5 @@
 import ContextTest from "@/components/ContextTest"
+import UseCallback from "@/hooks/UseCallback"
 import UseEffect from "@/hooks/UseEffect"
 import UseMemo from "@/hooks/UseMemo"
 import RefTest from "@/hooks/UseRef"
@@ -10,7 +11,8 @@ export default function Home() {
       {/* <UseEffect /> */}
       {/* <ContextTest /> */}
       {/* <RefTest /> */}
-      <UseMemo />
+      {/* <UseMemo /> */}
+      <UseCallback />
     </div>
   )
 }
