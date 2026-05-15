@@ -7,7 +7,7 @@ export default function ContextTest() {
   const name = useContext(UserContext);
 
   return (
-    <div className="p-5">
+    <div className="">
       <h1 className="text-2xl font-bold">
         Welcome {name}
       </h1>
