@@ -15,7 +15,6 @@ const Counter = () => {
     setCount(count - 1);
   };
 
-  
   return (
     <div className="h-screen flex justify-center items-center bg-slate-100">
       <div className="w-90 bg-white p-8 rounded-2xl shadow-2xl text-center">
