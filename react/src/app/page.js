@@ -12,11 +12,11 @@ export default function Home() {
     <div>
       {/* <Counter /> */}
       {/* <UseEffect /> */}
-      {/* <ContextTest /> */}
+      <ContextTest />
       {/* <RefTest /> */}
       {/* <UseMemo /> */}
       {/* <UseCallback /> */}
-      <Nilkamal />
+      {/* <Nilkamal /> */}
     </div>
   )
 }
