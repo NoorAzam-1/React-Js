@@ -9,9 +9,9 @@ export default function Home() {
 
 
     <div>
-      {/* <Counter /> */}
+      <Counter />
       {/* <UseEffect /> */}
-      <ContextTest />
+      {/* <ContextTest /> */}
       {/* <RefTest /> */}
       {/* <UseMemo /> */}
       {/* <UseCallback /> */}
