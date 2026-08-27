@@ -1,0 +1,3235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Ultimate React Masterclass - Detailed Edition</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @page {
+        size: A4;
+        margin: 1.5cm;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        color: #1e293b;
+        background-color: #ffffff;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        font-size: 10pt;
+      }
+      .cover {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: white;
+        page-break-after: always;
+      }
+      .cover::before {
+        content: "";
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(56, 189, 248, 0.2) 0%,
+          transparent 70%
+        );
+        top: -100px;
+        right: -100px;
+        border-radius: 50%;
+      }
+      .react-logo {
+        font-size: 80px;
+        margin-bottom: 20px;
+        color: #38bdf8;
+        font-weight: 800;
+        font-family: "Space Grotesk", sans-serif;
+      }
+      .cover h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 38pt;
+        margin: 0;
+        background: linear-gradient(90deg, #38bdf8, #818cf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .cover p {
+        font-size: 14pt;
+        color: #94a3b8;
+        margin-top: 15px;
+        font-weight: 300;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      .section {
+        margin-bottom: 45px;
+        page-break-inside: avoid;
+      }
+      .section-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 10px;
+      }
+      .section-number {
+        background: #0f172a;
+        color: #38bdf8;
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 13pt;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        margin-right: 15px;
+        flex-shrink: 0;
+      }
+      .section-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 17pt;
+        color: #0f172a;
+        margin: 0;
+        font-weight: 700;
+      }
+      .subsection-title {
+        font-weight: 700;
+        color: #334155;
+        margin-top: 20px;
+        margin-bottom: 8px;
+        font-size: 11pt;
+        border-left: 3px solid #38bdf8;
+        padding-left: 10px;
+      }
+      .content-text {
+        color: #475569;
+        text-align: justify;
+        margin-bottom: 10px;
+      }
+      ul {
+        margin: 5px 0 15px 20px;
+        padding: 0;
+      }
+      li {
+        color: #475569;
+        margin-bottom: 6px;
+      }
+      li::marker {
+        color: #38bdf8;
+        font-size: 10pt;
+      }
+      .highlight {
+        background-color: #f1f5f9;
+        color: #0f172a;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: "Courier New", monospace;
+        font-size: 9pt;
+        font-weight: 600;
+      }
+      pre {
+        background: #1e293b;
+        color: #e2e8f0;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: "Courier New", monospace;
+        font-size: 8.5pt;
+        margin: 10px 0 15px 0;
+        border-left: 4px solid #38bdf8;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      .keyword {
+        color: #c084fc;
+      } /* purple for keywords */
+      .string {
+        color: #34d399;
+      } /* green for strings */
+      .func {
+        color: #38bdf8;
+      } /* blue for functions */
+      .comment {
+        color: #64748b;
+        font-style: italic;
+      } /* gray for comments */
+      .footer {
+        text-align: center;
+        font-size: 9pt;
+        color: #94a3b8;
+        margin-top: 50px;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cover">
+      <div class="react-logo">&lt;/&gt;</div>
+      <h1>The Ultimate React Masterclass</h1>
+      <p>Detailed Guide with Hooks, Routing & Code Examples</p>
+    </div>
+
+    <div class="container">
+      <!-- 1. Intro -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">01</div>
+          <h2 class="section-title">Introduction to React</h2>
+        </div>
+        <p class="content-text">
+          <span class="highlight">React</span> is a declarative, component-based
+          JavaScript library created by <strong>Meta (Facebook)</strong> for
+          building user interfaces. Instead of manipulating the DOM directly
+          (imperative), you describe what the UI should look like for a given
+          state, and React handles the DOM updates.
+        </p>
+
+        <div class="subsection-title">Declarative vs Imperative</div>
+        <p class="content-text">
+          In traditional JavaScript (imperative approach), you manually tell the
+          browser <em>how</em> to update the UI step by step — find the element,
+          change its text, add a class, etc. In React (declarative approach),
+          you simply <strong>describe what the UI should look like</strong> for
+          a given state, and React handles all the DOM updates automatically
+          behind the scenes.
+        </p>
+        <pre><span class="comment">// Imperative (Old way) — You do everything manually</span>
+<span class="keyword">const</span> el = document.<span class="func">getElementById</span>(<span class="string">"title"</span>);
+el.textContent = <span class="string">"Hello World"</span>;
+el.classList.<span class="func">add</span>(<span class="string">"active"</span>);
+
+<span class="comment">// Declarative (React way) — Just describe what you want</span>
+<span class="keyword">return</span> &lt;<span class="func">h1</span> <span class="func">className</span>=<span class="string">"active"</span>&gt;Hello World&lt;/<span class="func">h1</span>&gt;;</pre>
+
+        <div class="subsection-title">What is the Virtual DOM?</div>
+        <p class="content-text">
+          The <span class="highlight">Virtual DOM</span> is React's secret
+          weapon for performance. It is a lightweight copy of the real DOM kept
+          in memory. Here is how it works step by step:
+        </p>
+        <ul>
+          <li>
+            <strong>State Change:</strong> When state changes (e.g., a button
+            click updates a counter), React creates a
+            <strong>new Virtual DOM tree</strong> representing the updated UI.
+          </li>
+          <li>
+            <strong>Diffing:</strong> React compares the new Virtual DOM tree
+            with the previous one using the <strong>Diffing Algorithm</strong>.
+            It finds exactly which nodes changed.
+          </li>
+          <li>
+            <strong>Reconciliation:</strong> React calculates the minimal number
+            of changes needed to update the real DOM.
+          </li>
+          <li>
+            <strong>Batch Update:</strong> React applies only the necessary
+            changes to the real DOM in one batch, not one-by-one.
+          </li>
+        </ul>
+        <p class="content-text">
+          <strong>Example:</strong> If you change a list item in a list of 1000
+          items, React will NOT rebuild the entire list. It will only update
+          that <strong>one specific item</strong> in the real DOM — making it
+          blazing fast.
+        </p>
+
+        <div class="subsection-title">Key Features of React</div>
+        <ul>
+          <li>
+            <strong>Component-Based:</strong> UI is broken into small, reusable
+            pieces called components.
+          </li>
+          <li>
+            <strong>Learn Once, Write Anywhere:</strong> You can use React for
+            web (React DOM), mobile (React Native), and even desktop (Electron).
+          </li>
+          <li>
+            <strong>Unidirectional Data Flow:</strong> Data flows from parent to
+            child (via props), making the app predictable and easy to debug.
+          </li>
+          <li>
+            <strong>Rich Ecosystem:</strong> Huge community, thousands of
+            libraries (React Router, Redux, Material UI, etc.).
+          </li>
+          <li>
+            <strong>JSX Syntax:</strong> Write HTML-like code directly inside
+            JavaScript for a cleaner developer experience.
+          </li>
+        </ul>
+
+        <div class="subsection-title">Who Uses React?</div>
+        <ul>
+          <li>
+            <strong>Meta (Facebook/Instagram)</strong> — React was created by
+            them
+          </li>
+          <li><strong>Netflix</strong> — UI rendering and performance</li>
+          <li><strong>Airbnb</strong> — Full booking interface</li>
+          <li>
+            <strong>Uber Eats</strong> — Restaurant and order management UI
+          </li>
+          <li><strong>Twitter (X)</strong> — Frontend framework</li>
+          <li><strong>Dropbox</strong> — File management interface</li>
+        </ul>
+      </div>
+
+      <!-- 2. Setup -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">02</div>
+          <h2 class="section-title">Setting Up the Environment</h2>
+        </div>
+        <p class="content-text">
+          Before writing React code, you need to set up your development
+          environment. The modern and recommended way is to use
+          <span class="highlight">Vite</span> — a next-generation frontend build
+          tool that is significantly faster than the older Create React App
+          (CRA).
+        </p>
+
+        <div class="subsection-title">Prerequisites</div>
+        <ul>
+          <li>
+            <strong>Node.js</strong> (version 16 or higher) — Download from
+            <span class="highlight">nodejs.org</span>
+          </li>
+          <li>
+            <strong>npm</strong> (comes bundled with Node.js) — Package manager
+            for JavaScript
+          </li>
+          <li><strong>Code Editor</strong> — VS Code is recommended</li>
+          <li><strong>Terminal / Command Prompt</strong> — To run commands</li>
+        </ul>
+
+        <div class="subsection-title">
+          Why Vite Instead of Create React App?
+        </div>
+        <p class="content-text">
+          <strong>Create React App (CRA):</strong> Outdated, slow startup, heavy
+          webpack configuration.<br />
+          <strong>Vite:</strong> Lightning-fast HMR (Hot Module Replacement),
+          instant dev server start, modern ES modules support. Vite is now the
+          officially recommended tool by the React team.
+        </p>
+
+        <div class="subsection-title">Step-by-Step Setup (4 Commands)</div>
+
+        <p class="content-text">
+          <strong>Command 1: Create a New React Project</strong>
+        </p>
+        <pre><span class="comment"># This command uses Vite's latest version to scaffold a new React project</span>
+npm create vite@latest my-react-app -- --template react
+<span class="comment"># "my-react-app" = your project folder name (change it to anything)</span>
+<span class="comment"># "-- --template react" = tells Vite to use the React JavaScript template</span></pre>
+
+        <p class="content-text">
+          <strong>Command 2: Navigate into the Project Folder</strong>
+        </p>
+        <pre><span class="comment"># Move your terminal into the project directory</span>
+cd my-react-app</pre>
+
+        <p class="content-text">
+          <strong>Command 3: Install Dependencies</strong>
+        </p>
+        <pre><span class="comment"># Reads package.json and downloads all required packages</span>
+<span class="comment"># Creates a "node_modules" folder with React, Vite, etc.</span>
+npm install</pre>
+
+        <p class="content-text">
+          <strong>Command 4: Start the Development Server</strong>
+        </p>
+        <pre><span class="comment"># Starts Vite's local development server</span>
+npm run dev
+<span class="comment"># Output: VITE v5.x.x ready in 300 ms</span>
+<span class="comment"># ➜  Local: http://localhost:5173/</span>
+<span class="comment"># Open this URL in browser to see your React app!</span></pre>
+
+        <div class="subsection-title">Project Folder Structure</div>
+        <pre>my-react-app/
+├── node_modules/       <span class="comment">// All installed packages (don't edit)</span>
+├── public/             <span class="comment">// Static assets (images, favicon)</span>
+│   └── vite.svg
+├── src/                <span class="comment">// Your React code goes here</span>
+│   ├── assets/         <span class="comment">// Images, fonts, etc.</span>
+│   ├── App.css         <span class="comment">// Styles for App component</span>
+│   ├── App.jsx         <span class="comment">// Main App component (write code here)</span>
+│   ├── index.css       <span class="comment">// Global styles</span>
+│   └── main.jsx        <span class="comment">// Entry point (renders App into DOM)</span>
+├── index.html          <span class="comment">// Root HTML file</span>
+├── package.json        <span class="comment">// Project config & dependencies</span>
+└── vite.config.js      <span class="comment">// Vite configuration</span></pre>
+
+        <div class="subsection-title">Understanding package.json</div>
+        <pre>{
+  <span class="string">"name"</span>: <span class="string">"my-react-app"</span>,
+  <span class="string">"type"</span>: <span class="string">"module"</span>,           <span class="comment">// Enables ES modules (import/export)</span>
+  <span class="string">"scripts"</span>: {
+    <span class="string">"dev"</span>: <span class="string">"vite"</span>,             <span class="comment">// npm run dev → starts server</span>
+    <span class="string">"build"</span>: <span class="string">"vite build"</span>,     <span class="comment">// npm run build → production build</span>
+    <span class="string">"preview"</span>: <span class="string">"vite preview"</span>  <span class="comment">// npm run preview → preview prod build</span>
+  },
+  <span class="string">"dependencies"</span>: {         <span class="comment">// Runtime dependencies</span>
+    <span class="string">"react"</span>: <span class="string">"^18.x.x"</span>,
+    <span class="string">"react-dom"</span>: <span class="string">"^18.x.x"</span>
+  },
+  <span class="string">"devDependencies"</span>: {      <span class="comment">// Development-only dependencies</span>
+    <span class="string">"@vitejs/plugin-react"</span>: <span class="string">"^4.x.x"</span>,
+    <span class="string">"vite"</span>: <span class="string">"^5.x.x"</span>
+  }
+}</pre>
+
+        <p class="content-text">
+          <strong>Important Notes:</strong> Never edit
+          <span class="highlight">node_modules</span> manually. Run
+          <span class="highlight">npm install</span> after cloning a project.
+          Press <span class="highlight">Ctrl + C</span> to stop the dev server.
+        </p>
+      </div>
+
+      <!-- 3. JSX -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">03</div>
+          <h2 class="section-title">JSX (JavaScript XML)</h2>
+        </div>
+        <p class="content-text">
+          <span class="highlight">JSX</span> stands for
+          <strong>JavaScript XML</strong>. It is a syntax extension that allows
+          you to write HTML-like code directly inside JavaScript files. JSX is
+          not valid JavaScript by itself — it gets compiled by Vite/Babel into
+          regular JavaScript function calls.
+        </p>
+
+        <div class="subsection-title">Without JSX vs With JSX</div>
+        <pre><span class="comment">// ❌ WITHOUT JSX (Verbose and hard to read)</span>
+<span class="keyword">const</span> element = React.<span class="func">createElement</span>(<span class="string">'div'</span>, { <span class="func">className</span>: <span class="string">'container'</span> },
+  React.<span class="func">createElement</span>(<span class="string">'h1'</span>, <span class="keyword">null</span>, <span class="string">'Hello, World!'</span>),
+  React.<span class="func">createElement</span>(<span class="string">'p'</span>, <span class="keyword">null</span>, <span class="string">'This is without JSX.'</span>)
+);
+
+<span class="comment">// ✅ WITH JSX (Clean and readable)</span>
+<span class="keyword">const</span> element = (
+  &lt;div <span class="func">className</span>=<span class="string">"container"</span>&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    &lt;p&gt;This is with JSX.&lt;/p&gt;
+  &lt;/div&gt;
+);</pre>
+
+        <div class="subsection-title">
+          Rule 1: Return a Single Parent Element
+        </div>
+        <p class="content-text">
+          JSX expressions must have <strong>one parent element</strong>. If you
+          have multiple elements at the same level, wrap them in a
+          <span class="highlight">&lt;div&gt;</span> or use a
+          <span class="highlight">Fragment</span> (<span class="highlight"
+            >&lt;&gt;...&lt;/&gt;</span
+          >).
+        </p>
+        <pre><span class="comment">// ✅ Correct — Single parent div</span>
+<span class="keyword">return</span> (
+  &lt;div&gt;
+    &lt;h1&gt;Hello&lt;/h1&gt;
+    &lt;p&gt;World&lt;/p&gt;
+  &lt;/div&gt;
+);
+
+<span class="comment">// ✅ Correct — Using Fragment (no extra div in DOM)</span>
+<span class="keyword">return</span> (
+  &lt;&gt;
+    &lt;h1&gt;Hello&lt;/h1&gt;
+    &lt;p&gt;World&lt;/p&gt;
+  &lt;/&gt;
+);
+
+<span class="comment">// ❌ Wrong — Two elements without a parent</span>
+<span class="keyword">return</span> (
+  &lt;h1&gt;Hello&lt;/h1&gt;
+  &lt;p&gt;World&lt;/p&gt;
+);</pre>
+
+        <div class="subsection-title">
+          Rule 2: Use className Instead of class
+        </div>
+        <p class="content-text">
+          In HTML, you use the <span class="highlight">class</span> attribute.
+          But in JSX, <span class="highlight">class</span> is a reserved keyword
+          in JavaScript, so React uses
+          <span class="highlight">className</span> instead. Same for
+          <span class="highlight">htmlFor</span> (instead of
+          <span class="highlight">for</span>).
+        </p>
+        <pre><span class="comment">// ❌ Wrong in JSX</span>
+&lt;div <span class="func">class</span>=<span class="string">"container"</span>&gt;...&lt;/div&gt;
+
+<span class="comment">// ✅ Correct in JSX</span>
+&lt;div <span class="func">className</span>=<span class="string">"container"</span>&gt;...&lt;/div&gt;
+
+<span class="comment">// Same for htmlFor (instead of for)</span>
+&lt;label <span class="func">htmlFor</span>=<span class="string">"email"</span>&gt;Email:&lt;/label&gt;</pre>
+
+        <div class="subsection-title">
+          Rule 3: JavaScript Expressions in Curly Braces {}
+        </div>
+        <p class="content-text">
+          Any valid JavaScript expression can be embedded inside JSX using curly
+          braces <span class="highlight">{}</span>. This includes variables,
+          function calls, ternary operators, array methods, and more.
+        </p>
+        <pre><span class="keyword">const</span> name = <span class="string">"Ahmad"</span>;
+<span class="keyword">const</span> isLoggedIn = <span class="keyword">true</span>;
+<span class="keyword">const</span> items = [<span class="string">"React"</span>, <span class="string">"Vue"</span>, <span class="string">"Angular"</span>];
+
+<span class="keyword">const</span> element = (
+  &lt;div <span class="func">className</span>=<span class="string">"container"</span>&gt;
+    <span class="comment">{/* Variable */}</span>
+    &lt;h1&gt;Hello, {name}!&lt;/h1&gt;
+
+    <span class="comment">{/* Ternary Operator */}</span>
+    &lt;p&gt;{isLoggedIn ? <span class="string">"Welcome back!"</span> : <span class="string">"Please login"</span>}&lt;/p&gt;
+
+    <span class="comment">{/* Function Call */}</span>
+    &lt;p&gt;Current time: {<span class="keyword">new</span> <span class="func">Date</span>().<span class="func">toLocaleTimeString</span>()}&lt;/p&gt;
+
+    <span class="comment">{/* Array Map */}</span>
+    &lt;ul&gt;
+      {items.<span class="func">map</span>((item, index) =&gt; (
+        &lt;li <span class="func">key</span>={index}&gt;{item}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  &lt;/div&gt;
+);</pre>
+
+        <div class="subsection-title">Rule 4: Inline Styles Use Objects</div>
+        <p class="content-text">
+          In HTML, you write styles as strings. In JSX, styles are passed as
+          <strong>JavaScript objects</strong> with camelCase property names.
+        </p>
+        <pre><span class="comment">// ❌ Wrong — String format like HTML</span>
+&lt;div <span class="func">style</span>=<span class="string">"color: red; font-size: 16px;"</span>&gt;...&lt;/div&gt;
+
+<span class="comment">// ✅ Correct — Object format with camelCase</span>
+&lt;div <span class="func">style</span>={{ <span class="func">color</span>: <span class="string">'red'</span>, <span class="func">fontSize</span>: <span class="string">'16px'</span> }}&gt;...&lt;/div&gt;</pre>
+
+        <div class="subsection-title">
+          Rule 5: Self-Closing Tags Are Mandatory
+        </div>
+        <p class="content-text">
+          In HTML, some tags like <span class="highlight">&lt;img&gt;</span>,
+          <span class="highlight">&lt;input&gt;</span>,
+          <span class="highlight">&lt;br&gt;</span> can be left open. In JSX,
+          <strong>every tag must be explicitly closed</strong>.
+        </p>
+        <pre><span class="comment">// ❌ Wrong in JSX</span>
+&lt;img <span class="func">src</span>=<span class="string">"photo.jpg"</span>&gt;
+&lt;input <span class="func">type</span>=<span class="string">"text"</span>&gt;
+&lt;br&gt;
+
+<span class="comment">// ✅ Correct in JSX</span>
+&lt;img <span class="func">src</span>=<span class="string">"photo.jpg"</span> <span class="func">alt</span>=<span class="string">"Photo"</span> /&gt;
+&lt;input <span class="func">type</span>=<span class="string">"text"</span> /&gt;
+&lt;br /&gt;</pre>
+
+        <div class="subsection-title">Rule 6: Comments in JSX</div>
+        <p class="content-text">
+          Single-line comments use
+          <span class="highlight">{/* comment */}</span> syntax inside JSX.
+        </p>
+        <pre>&lt;div&gt;
+  <span class="comment">{/* This is a JSX comment */}</span>
+  &lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;/div&gt;</pre>
+
+        <div class="subsection-title">Complete JSX Example</div>
+        <pre><span class="keyword">const</span> user = { <span class="func">name</span>: <span class="string">"Ahmad"</span>, <span class="func">age</span>: 25, <span class="func">isActive</span>: <span class="keyword">true</span> };
+
+<span class="keyword">function</span> <span class="func">UserProfile</span>() {
+  <span class="keyword">return</span> (
+    &lt;div <span class="func">className</span>=<span class="string">"profile-card"</span> <span class="func">style</span>={{ <span class="func">padding</span>: <span class="string">'20px'</span>, <span class="func">border</span>: <span class="string">'1px solid #ccc'</span> }}&gt;
+      &lt;h2&gt;User Profile&lt;/h2&gt;
+      &lt;p&gt;Name: {user.name}&lt;/p&gt;
+      &lt;p&gt;Age: {user.age}&lt;/p&gt;
+      &lt;p&gt;Status: {user.isActive ? <span class="string">"Active ✅"</span> : <span class="string">"Inactive ❌"</span>}&lt;/p&gt;
+      &lt;p&gt;Last updated: {<span class="keyword">new</span> <span class="func">Date</span>().<span class="func">toLocaleDateString</span>()}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+      </div>
+
+      <!-- 4. Components -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">04</div>
+          <h2 class="section-title">Components in React</h2>
+        </div>
+        <p class="content-text">
+          <span class="highlight">Components</span> are the building blocks of
+          any React application. A component is a
+          <strong>reusable piece of UI</strong> that can manage its own logic
+          and rendering. Every React app is made up of multiple components
+          working together.
+        </p>
+
+        <div class="subsection-title">
+          Functional Component (Modern Standard) ✅
+        </div>
+        <p class="content-text">
+          A functional component is simply a
+          <strong>JavaScript function</strong> that returns JSX. It receives
+          data via <span class="highlight">props</span> (properties) as an
+          argument.
+        </p>
+        <pre><span class="comment">// Simple Functional Component</span>
+<span class="keyword">function</span> <span class="func">Greeting</span>({ name }) {
+  <span class="keyword">return</span> &lt;h1&gt;Hello, {name}!&lt;/h1&gt;;
+}
+
+<span class="comment">// Arrow Function Version</span>
+<span class="keyword">const</span> <span class="func">Greeting</span> = ({ name }) =&gt; {
+  <span class="keyword">return</span> &lt;h1&gt;Hello, {name}!&lt;/h1&gt;;
+};
+
+<span class="comment">// Even shorter (implicit return)</span>
+<span class="keyword">const</span> <span class="func">Greeting</span> = ({ name }) =&gt; &lt;h1&gt;Hello, {name}!&lt;/h1&gt;;</pre>
+
+        <p class="content-text">
+          <strong>How to use (call) a component:</strong>
+        </p>
+        <pre><span class="comment">// In parent component or App.jsx</span>
+&lt;<span class="func">Greeting</span> <span class="func">name</span>=<span class="string">"Ahmad"</span> /&gt;
+&lt;<span class="func">Greeting</span> <span class="func">name</span>=<span class="string">"Sara"</span> /&gt;
+&lt;<span class="func">Greeting</span> <span class="func">name</span>=<span class="string">"Ali"</span> /&gt;
+
+<span class="comment">// Output:</span>
+<span class="comment">// Hello, Ahmad!</span>
+<span class="comment">// Hello, Sara!</span>
+<span class="comment">// Hello, Ali!</span></pre>
+
+        <p class="content-text">
+          <strong>Key characteristics of Functional Components:</strong>
+        </p>
+        <ul>
+          <li>Simple JavaScript function — no special syntax needed</li>
+          <li>
+            Props are received as the first argument (destructured directly)
+          </li>
+          <li>Returns JSX which describes the UI</li>
+          <li>
+            Hooks (<span class="highlight">useState</span>,
+            <span class="highlight">useEffect</span>, etc.) can be used inside
+            them
+          </li>
+          <li>
+            Component name
+            <strong>must start with a capital letter</strong> (e.g.,
+            <span class="highlight">Greeting</span>, not
+            <span class="highlight">greeting</span>)
+          </li>
+          <li>
+            The file name should match the component name (e.g.,
+            <span class="highlight">Greeting.jsx</span>)
+          </li>
+        </ul>
+
+        <div class="subsection-title">Functional vs Class — Comparison</div>
+        <pre><span class="comment">// Feature        Functional                  Class
+// Syntax         Simple function             ES6 class + render()
+// State          useState hook               this.state + this.setState()
+// Lifecycle      useEffect hook              componentDidMount, etc.
+// Props          { name } (destructured)     this.props.name
+// Performance    Slightly faster             Slightly slower
+// Hooks          ✅ Yes                      ❌ No
+// Recommended    ✅ Yes                      ⚠️ Legacy only</span></pre>
+
+        <div class="subsection-title">
+          Component Reusability — The Real Power
+        </div>
+        <p class="content-text">
+          The biggest advantage of components is <strong>reusability</strong>.
+          You write a component once and use it multiple times with different
+          data.
+        </p>
+        <pre><span class="comment">// Define a reusable Button component</span>
+<span class="keyword">function</span> <span class="func">Button</span>({ text, color, onClick }) {
+  <span class="keyword">return</span> (
+    &lt;button
+      <span class="func">onClick</span>={onClick}
+      <span class="func">style</span>={{
+        <span class="func">backgroundColor</span>: color,
+        <span class="func">color</span>: <span class="string">'white'</span>,
+        <span class="func">padding</span>: <span class="string">'10px 20px'</span>,
+        <span class="func">border</span>: <span class="string">'none'</span>,
+        <span class="func">borderRadius</span>: <span class="string">'5px'</span>,
+        <span class="func">cursor</span>: <span class="string">'pointer'</span>
+      }}
+    &gt;
+      {text}
+    &lt;/button&gt;
+  );
+}
+
+<span class="comment">// Reuse it with different props</span>
+<span class="keyword">function</span> <span class="func">App</span>() {
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;<span class="func">Button</span> <span class="func">text</span>=<span class="string">"Save"</span> <span class="func">color</span>=<span class="string">"green"</span> <span class="func">onClick</span>={() =&gt; <span class="func">alert</span>(<span class="string">'Saved!'</span>)} /&gt;
+      &lt;<span class="func">Button</span> <span class="func">text</span>=<span class="string">"Delete"</span> <span class="func">color</span>=<span class="string">"red"</span> <span class="func">onClick</span>={() =&gt; <span class="func">alert</span>(<span class="string">'Deleted!'</span>)} /&gt;
+      &lt;<span class="func">Button</span> <span class="func">text</span>=<span class="string">"Cancel"</span> <span class="func">color</span>=<span class="string">"gray"</span> <span class="func">onClick</span>={() =&gt; <span class="func">alert</span>(<span class="string">'Cancelled!'</span>)} /&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">
+          Props — Passing Data Between Components
+        </div>
+        <p class="content-text">
+          <span class="highlight">Props</span> (short for properties) are how
+          you pass data from a <strong>parent component</strong> to a
+          <strong>child component</strong>. They are read-only — a child cannot
+          change them. You can pass any data type: strings, numbers, booleans,
+          arrays, objects, functions, even other components.
+        </p>
+        <pre><span class="comment">// Parent Component</span>
+<span class="keyword">function</span> <span class="func">App</span>() {
+  <span class="keyword">return</span> (
+    &lt;<span class="func">UserCard</span>
+      <span class="func">name</span>=<span class="string">"Ahmad"</span>
+      <span class="func">age</span>={25}
+      <span class="func">isStudent</span>={<span class="keyword">true</span>}
+      <span class="func">hobbies</span>={[<span class="string">"coding"</span>, <span class="string">"reading"</span>]}
+    /&gt;
+  );
+}
+
+<span class="comment">// Child Component — Receives Props</span>
+<span class="keyword">function</span> <span class="func">UserCard</span>({ name, age, isStudent, hobbies }) {
+  <span class="keyword">return</span> (
+    &lt;div <span class="func">className</span>=<span class="string">"card"</span>&gt;
+      &lt;h2&gt;{name}&lt;/h2&gt;
+      &lt;p&gt;Age: {age}&lt;/p&gt;
+      &lt;p&gt;Student: {isStudent ? <span class="string">"Yes"</span> : <span class="string">"No"</span>}&lt;/p&gt;
+      &lt;p&gt;Hobbies: {hobbies.<span class="func">join</span>(<span class="string">", "</span>)}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">
+          Component Composition — Nesting Components
+        </div>
+        <p class="content-text">
+          Components can contain other components. This is called
+          <strong>composition</strong> and it is how complex UIs are built from
+          simple pieces.
+        </p>
+        <pre><span class="comment">// Header Component</span>
+<span class="keyword">function</span> <span class="func">Header</span>() {
+  <span class="keyword">return</span> &lt;header&gt;&lt;h1&gt;My Website&lt;/h1&gt;&lt;/header&gt;;
+}
+
+<span class="comment">// Footer Component</span>
+<span class="keyword">function</span> <span class="func">Footer</span>() {
+  <span class="keyword">return</span> &lt;footer&gt;&lt;p&gt;© 2026 My Website&lt;/p&gt;&lt;/footer&gt;;
+}
+
+<span class="comment">// Main Component — Composes Header + Content + Footer</span>
+<span class="keyword">function</span> <span class="func">App</span>() {
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;<span class="func">Header</span> /&gt;
+      &lt;main&gt;
+        &lt;h2&gt;Welcome to my site&lt;/h2&gt;
+      &lt;/main&gt;
+      &lt;<span class="func">Footer</span> /&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Complete Real-World Example</div>
+        <pre><span class="comment">// --- UserCard.jsx ---</span>
+<span class="keyword">function</span> <span class="func">UserCard</span>({ name, role, avatar }) {
+  <span class="keyword">return</span> (
+    &lt;div <span class="func">style</span>={{ <span class="func">border</span>: <span class="string">'1px solid #ddd'</span>, <span class="func">padding</span>: <span class="string">'15px'</span>, <span class="func">borderRadius</span>: <span class="string">'8px'</span> }}&gt;
+      &lt;img <span class="func">src</span>={avatar} <span class="func">alt</span>={name} <span class="func">style</span>={{ <span class="func">width</span>: <span class="string">'80px'</span>, <span class="func">borderRadius</span>: <span class="string">'50%'</span> }} /&gt;
+      &lt;h3&gt;{name}&lt;/h3&gt;
+      &lt;p&gt;{role}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+<span class="comment">// --- App.jsx ---</span>
+<span class="keyword">function</span> <span class="func">App</span>() {
+  <span class="keyword">const</span> users = [
+    { <span class="func">id</span>: 1, <span class="func">name</span>: <span class="string">"Ahmad"</span>, <span class="func">role</span>: <span class="string">"Developer"</span>, <span class="func">avatar</span>: <span class="string">"img1.jpg"</span> },
+    { <span class="func">id</span>: 2, <span class="func">name</span>: <span class="string">"Sara"</span>, <span class="func">role</span>: <span class="string">"Designer"</span>, <span class="func">avatar</span>: <span class="string">"img2.jpg"</span> },
+    { <span class="func">id</span>: 3, <span class="func">name</span>: <span class="string">"Ali"</span>, <span class="func">role</span>: <span class="string">"Manager"</span>, <span class="func">avatar</span>: <span class="string">"img3.jpg"</span> },
+  ];
+
+  <span class="keyword">return</span> (
+    &lt;div <span class="func">style</span>={{ <span class="func">display</span>: <span class="string">'grid'</span>, <span class="func">gridTemplateColumns</span>: <span class="string">'repeat(3, 1fr)'</span>, <span class="func">gap</span>: <span class="string">'20px'</span> }}&gt;
+      {users.<span class="func">map</span>(user =&gt; (
+        &lt;<span class="func">UserCard</span>
+          <span class="func">key</span>={user.id}
+          <span class="func">name</span>={user.name}
+          <span class="func">role</span>={user.role}
+          <span class="func">avatar</span>={user.avatar}
+        /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}</pre>
+      </div>
+
+      <!-- 5. Props & State -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">05</div>
+          <h2 class="section-title">Props and State</h2>
+        </div>
+        <p class="content-text">
+          <span class="highlight">Props</span> and
+          <span class="highlight">State</span> are the two main ways data flows
+          in React. Understanding both is essential for building dynamic
+          applications.
+        </p>
+
+        <div class="subsection-title">What are Props?</div>
+        <p class="content-text">
+          <span class="highlight">Props</span> (short for properties) are
+          <strong>read-only arguments</strong> passed from a parent component to
+          a child component. They are like function parameters — you pass data
+          in, and the child uses it. Props flow in
+          <strong>one direction only</strong>: parent → child.
+        </p>
+        <pre><span class="comment">// Parent passes props to child</span>
+&lt;<span class="func">UserCard</span> <span class="func">name</span>=<span class="string">"Ahmad"</span> <span class="func">age</span>={25} <span class="func">isOnline</span>={<span class="keyword">true</span>} /&gt;
+
+<span class="comment">// Child receives and uses props</span>
+<span class="keyword">function</span> <span class="func">UserCard</span>({ name, age, isOnline }) {
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;h2&gt;{name}&lt;/h2&gt;
+      &lt;p&gt;Age: {age}&lt;/p&gt;
+      &lt;p&gt;Status: {isOnline ? <span class="string">"Online 🟢"</span> : <span class="string">"Offline 🔴"</span>}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Props Rules</div>
+        <ul>
+          <li>
+            Props are <strong>read-only</strong> — a child component
+            <strong>cannot modify</strong> the props it receives.
+          </li>
+          <li>
+            You can pass any data type: strings, numbers, booleans, arrays,
+            objects, functions, even other components.
+          </li>
+          <li>
+            You can set <strong>default values</strong> for props using
+            destructuring.
+          </li>
+          <li>
+            <span class="highlight">props.children</span> is a special prop that
+            holds whatever you put between a component's opening and closing
+            tags.
+          </li>
+        </ul>
+        <pre><span class="comment">// Default Props</span>
+<span class="keyword">function</span> <span class="func">Button</span>({ <span class="func">text</span> = <span class="string">"Click me"</span>, <span class="func">color</span> = <span class="string">"blue"</span> }) {
+  <span class="keyword">return</span> &lt;button <span class="func">style</span>={{ <span class="func">backgroundColor</span>: color }}&gt;{text}&lt;/button&gt;;
+}
+
+<span class="comment">// props.children — Wrapping content</span>
+<span class="keyword">function</span> <span class="func">Card</span>({ children }) {
+  <span class="keyword">return</span> &lt;div <span class="func">className</span>=<span class="string">"card"</span>&gt;{children}&lt;/div&gt;;
+}
+
+<span class="comment">// Usage</span>
+&lt;<span class="func">Card</span>&gt;
+  &lt;h2&gt;Title&lt;/h2&gt;
+  &lt;p&gt;Some content inside the card&lt;/p&gt;
+&lt;/<span class="func">Card</span>&gt;</pre>
+
+        <div class="subsection-title">What is State?</div>
+        <p class="content-text">
+          <span class="highlight">State</span> is
+          <strong>internal data</strong> owned and managed by a component. When
+          state changes, React <strong>re-renders</strong> the component to
+          reflect the new data on screen. Unlike props, state is
+          <strong>mutable</strong> — you can change it using the setter
+          function.
+        </p>
+        <pre><span class="keyword">function</span> <span class="func">Counter</span>() {
+  <span class="comment">// useState returns [currentValue, setterFunction]</span>
+  <span class="keyword">const</span> [count, setCount] = <span class="func">useState</span>(0);
+
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;p&gt;Clicked {count} times&lt;/p&gt;
+      <span class="comment">{/* Never modify state directly: count++ ❌ */}</span>
+      <span class="comment">{/* Always use setter: setCount(count + 1) ✅ */}</span>
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">setCount</span>(count + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">State Rules</div>
+        <ul>
+          <li>
+            <strong>Do not modify state directly</strong> — always use
+            <span class="highlight">setState()</span> or the setter function.
+          </li>
+          <li>
+            <strong>State updates are asynchronous</strong> — React batches
+            updates for performance.
+          </li>
+          <li>
+            <strong>State triggers re-render</strong> — when state changes, the
+            component and all its children re-render.
+          </li>
+          <li>
+            <strong>Each component has its own state</strong> — state is local
+            to the component.
+          </li>
+        </ul>
+
+        <div class="subsection-title">Props vs State — Comparison</div>
+        <pre><span class="comment">// Feature        Props                        State
+// Owner          Parent component             The component itself
+// Mutability     Read-only (immutable)        Mutable (via setState)
+// Purpose        Pass data down               Manage internal data
+// Trigger        Passed by parent             setState() triggers re-render
+// Initialization Passed as arguments          useState() or this.state = {}</span></pre>
+
+        <div class="subsection-title">Lifting State Up</div>
+        <p class="content-text">
+          Sometimes two sibling components need to share the same data. The
+          solution is to <strong>lift the state up</strong> to their closest
+          common parent and pass it down via props.
+        </p>
+        <pre><span class="comment">// Parent owns the shared state</span>
+<span class="keyword">function</span> <span class="func">App</span>() {
+  <span class="keyword">const</span> [temperature, setTemperature] = <span class="func">useState</span>(0);
+
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;<span class="func">TemperatureInput</span> <span class="func">value</span>={temperature} <span class="func">onChange</span>={setTemperature} /&gt;
+      &lt;<span class="func">TemperatureDisplay</span> <span class="func">temperature</span>={temperature} /&gt;
+    &lt;/div&gt;
+  );
+}
+
+<span class="comment">// Both children receive state via props</span>
+<span class="keyword">function</span> <span class="func">TemperatureInput</span>({ value, onChange }) {
+  <span class="keyword">return</span> &lt;input <span class="func">type</span>=<span class="string">"number"</span> <span class="func">value</span>={value} <span class="func">onChange</span>={(e) =&gt; <span class="func">onChange</span>(+e.target.value)} /&gt;;
+}
+
+<span class="keyword">function</span> <span class="func">TemperatureDisplay</span>({ temperature }) {
+  <span class="keyword">return</span> &lt;p&gt;Temperature: {temperature}°C&lt;/p&gt;;
+}</pre>
+
+        <div class="subsection-title">State with Objects and Arrays</div>
+        <pre><span class="comment">// Updating object state — always spread existing state</span>
+<span class="keyword">const</span> [user, setUser] = <span class="func">useState</span>({ <span class="func">name</span>: <span class="string">"Ahmad"</span>, <span class="func">age</span>: 25 });
+
+<span class="comment">// ✅ Correct — spread existing state, then override</span>
+<span class="func">setUser</span>({ ...user, <span class="func">age</span>: 26 });
+
+<span class="comment">// ❌ Wrong — replaces entire state, loses 'name'</span>
+<span class="func">setUser</span>({ <span class="func">age</span>: 26 });
+
+<span class="comment">// Updating array state</span>
+<span class="keyword">const</span> [items, setItems] = <span class="func">useState</span>([<span class="string">"React"</span>, <span class="string">"Vue"</span>]);
+
+<span class="comment">// Add item</span>
+<span class="func">setItems</span>([...items, <span class="string">"Angular"</span>]);
+
+<span class="comment">// Remove item</span>
+<span class="func">setItems</span>(items.<span class="func">filter</span>(item =&gt; item !== <span class="string">"Vue"</span>));
+
+<span class="comment">// Update item</span>
+<span class="func">setItems</span>(items.<span class="func">map</span>(item =&gt; item === <span class="string">"React"</span> ? <span class="string">"React.js"</span> : item));</pre>
+
+        <div class="subsection-title">Multiple State Variables</div>
+        <pre><span class="comment">// You can use multiple useState calls</span>
+<span class="keyword">function</span> <span class="func">Form</span>() {
+  <span class="keyword">const</span> [name, setName] = <span class="func">useState</span>(<span class="string">""</span>);
+  <span class="keyword">const</span> [email, setEmail] = <span class="func">useState</span>(<span class="string">""</span>);
+  <span class="keyword">const</span> [age, setAge] = <span class="func">useState</span>(0);
+
+  <span class="comment">// OR combine into one object</span>
+  <span class="keyword">const</span> [form, setForm] = <span class="func">useState</span>({
+    <span class="func">name</span>: <span class="string">""</span>,
+    <span class="func">email</span>: <span class="string">""</span>,
+    <span class="func">age</span>: 0
+  });
+
+  <span class="comment">// Update specific field</span>
+  <span class="keyword">const</span> <span class="func">updateField</span> = (field, value) =&gt; {
+    <span class="func">setForm</span>(prev =&gt; ({ ...prev, [field]: value }));
+  };
+}</pre>
+      </div>
+
+      <!-- 6. HOOKS (MAJOR DEEP DIVE) -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">06</div>
+          <h2 class="section-title">React Hooks (Deep Dive)</h2>
+        </div>
+        <p class="content-text">
+          <span class="highlight">Hooks</span> are special functions that let
+          you <strong>use state and lifecycle features</strong> in functional
+          components. They were introduced in React 16.8. Before hooks, these
+          features were only available in class components.
+        </p>
+
+        <div class="subsection-title">Rules of Hooks</div>
+        <ul>
+          <li>
+            Only call hooks at the <strong>top level</strong> of your component
+            — never inside loops, conditions, or nested functions.
+          </li>
+          <li>
+            Only call hooks from <strong>React function components</strong> or
+            <strong>custom hooks</strong>.
+          </li>
+          <li>
+            Hook names always start with
+            <span class="highlight">use</span> (e.g., useState, useEffect).
+          </li>
+        </ul>
+
+        <div class="subsection-title">1. useState — Local State Management</div>
+        <p class="content-text">
+          Manages local component state. Returns an array with the current value
+          and a setter function. The setter triggers a re-render.
+        </p>
+        <pre><span class="keyword">import</span> { useState } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span class="func">Counter</span>() {
+  <span class="comment">// useState(initialValue) returns [value, setValue]</span>
+  <span class="keyword">const</span> [count, setCount] = <span class="func">useState</span>(0);
+  <span class="keyword">const</span> [name, setName] = <span class="func">useState</span>(<span class="string">"Ahmad"</span>);
+  <span class="keyword">const</span> [user, setUser] = <span class="func">useState</span>({ <span class="func">name</span>: <span class="string">"Ahmad"</span>, <span class="func">age</span>: 25 });
+
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">setCount</span>(count + 1)}&gt;+1&lt;/button&gt;
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">setCount</span>(prev =&gt; prev + 1)}&gt;+1 (functional)&lt;/button&gt;
+
+      &lt;p&gt;Name: {name}&lt;/p&gt;
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">setName</span>(<span class="string">"Sara"</span>)}&gt;Change Name&lt;/button&gt;
+
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">setUser</span>({ ...user, <span class="func">age</span>: user.age + 1 })}&gt;
+        Increase Age
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+        <p class="content-text">
+          <strong
+            >Why use functional update
+            <span class="highlight">prev =&gt; prev + 1</span>?</strong
+          >
+          When new state depends on old state, always use the callback form.
+          This ensures you're working with the latest value, not a stale
+          closure.
+        </p>
+
+        <div class="subsection-title">
+          2. useEffect — Side Effects & Lifecycle
+        </div>
+        <p class="content-text">
+          Handles side effects: API calls, event subscriptions, timers, document
+          title updates, etc. The
+          <span class="highlight">dependency array</span> controls when it runs.
+        </p>
+        <pre><span class="keyword">import</span> { useEffect } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span class="func">UserProfile</span>({ userId }) {
+  <span class="keyword">const</span> [user, setUser] = <span class="func">useState</span>(<span class="keyword">null</span>);
+
+  <span class="comment">// Case 1: Runs on EVERY render (no dependency array)</span>
+  <span class="func">useEffect</span>(() =&gt; {
+    console.<span class="func">log</span>(<span class="string">"Component rendered"</span>);
+  });
+
+  <span class="comment">// Case 2: Runs ONCE on mount (empty dependency array [])</span>
+  <span class="func">useEffect</span>(() =&gt; {
+    console.<span class="func">log</span>(<span class="string">"Component mounted"</span>);
+    <span class="func">fetchUser</span>();
+  }, []);
+
+  <span class="comment">// Case 3: Runs when 'userId' changes</span>
+  <span class="func">useEffect</span>(() =&gt; {
+    <span class="func">fetchUser</span>(userId);
+  }, [userId]);
+
+  <span class="comment">// Case 4: Cleanup function (runs on unmount or before re-run)</span>
+  <span class="func">useEffect</span>(() =&gt; {
+    <span class="keyword">const</span> socket = <span class="func">connectWebSocket</span>();
+
+    <span class="keyword">return</span> () =&gt; {
+      <span class="comment">// Cleanup — runs when component unmounts or before effect re-runs</span>
+      socket.<span class="func">disconnect</span>();
+    };
+  }, []);
+
+  <span class="keyword">const</span> <span class="func">fetchUser</span> = <span class="keyword">async</span> (id) =&gt; {
+    <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="func">fetch</span>(<span class="string">`/api/users/</span>${id}<span class="string">`</span>);
+    <span class="keyword">const</span> data = <span class="keyword">await</span> res.<span class="func">json</span>();
+    <span class="func">setUser</span>(data);
+  };
+
+  <span class="keyword">if</span> (!user) <span class="keyword">return</span> &lt;p&gt;Loading...&lt;/p&gt;;
+  <span class="keyword">return</span> &lt;h1&gt;{user.name}&lt;/h1&gt;;
+}</pre>
+        <p class="content-text"><strong>Dependency Array Summary:</strong></p>
+        <pre><span class="comment">// useEffect(() => {})              → Runs after EVERY render
+// useEffect(() => {}, [])          → Runs ONCE on mount
+// useEffect(() => {}, [a, b])      → Runs when 'a' or 'b' changes
+// return () => {}                  → Cleanup function</span></pre>
+
+        <div class="subsection-title">3. useContext — Global State</div>
+        <p class="content-text">
+          Consumes data from a Context Provider without prop drilling. Perfect
+          for theme, auth, language, etc.
+        </p>
+        <pre><span class="keyword">import</span> { createContext, useContext, useState } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="comment">// 1. Create Context</span>
+<span class="keyword">const</span> ThemeContext = <span class="func">createContext</span>(<span class="keyword">null</span>);
+
+<span class="comment">// 2. Provider Component (wraps app)</span>
+<span class="keyword">function</span> <span class="func">ThemeProvider</span>({ children }) {
+  <span class="keyword">const</span> [theme, setTheme] = <span class="func">useState</span>(<span class="string">"light"</span>);
+  <span class="keyword">const</span> <span class="func">toggleTheme</span> = () =&gt; <span class="func">setTheme</span>(prev =&gt; prev === <span class="string">"light"</span> ? <span class="string">"dark"</span> : <span class="string">"light"</span>);
+
+  <span class="keyword">return</span> (
+    &lt;<span class="func">ThemeContext.Provider</span> <span class="func">value</span>={{ theme, toggleTheme }}&gt;
+      {children}
+    &lt;/<span class="func">ThemeContext.Provider</span>&gt;
+  );
+}
+
+<span class="comment">// 3. Any child component consumes context</span>
+<span class="keyword">function</span> <span class="func">ThemedButton</span>() {
+  <span class="keyword">const</span> { theme, toggleTheme } = <span class="func">useContext</span>(ThemeContext);
+
+  <span class="keyword">return</span> (
+    &lt;button <span class="func">onClick</span>={toggleTheme} <span class="func">className</span>={theme}&gt;
+      Current theme: {theme}
+    &lt;/button&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">
+          4. useRef — DOM Access & Persistent Values
+        </div>
+        <p class="content-text">
+          Creates a mutable reference that persists across renders WITHOUT
+          causing a re-render. Two main uses: accessing DOM elements and storing
+          values that don't trigger re-render.
+        </p>
+        <pre><span class="keyword">import</span> { useRef, useEffect } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span class="func">SearchInput</span>() {
+  <span class="keyword">const</span> inputRef = <span class="func">useRef</span>(<span class="keyword">null</span>);
+  <span class="keyword">const</span> renderCount = <span class="func">useRef</span>(0);
+
+  <span class="comment">// Access DOM element directly</span>
+  <span class="keyword">const</span> <span class="func">focusInput</span> = () =&gt; {
+    inputRef.current.<span class="func">focus</span>();
+  };
+
+  <span class="comment">// Store mutable value (doesn't trigger re-render)</span>
+  <span class="func">useEffect</span>(() =&gt; {
+    renderCount.current += 1;
+  });
+
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;input <span class="func">ref</span>={inputRef} <span class="func">type</span>=<span class="string">"text"</span> <span class="func">placeholder</span>=<span class="string">"Search..."</span> /&gt;
+      &lt;button <span class="func">onClick</span>={focusInput}&gt;Focus&lt;/button&gt;
+      &lt;p&gt;Rendered {renderCount.current} times&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">5. useReducer — Complex State Logic</div>
+        <p class="content-text">
+          An alternative to <span class="highlight">useState</span> for complex
+          state logic. Useful when state has multiple sub-values or when next
+          state depends on previous state. Similar to Redux pattern.
+        </p>
+        <pre><span class="keyword">import</span> { useReducer } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">const</span> <span class="func">reducer</span> = (state, action) =&gt; {
+  <span class="keyword">switch</span> (action.type) {
+    <span class="keyword">case</span> <span class="string">'increment'</span>: <span class="keyword">return</span> { ...state, <span class="func">count</span>: state.count + 1 };
+    <span class="keyword">case</span> <span class="string">'decrement'</span>: <span class="keyword">return</span> { ...state, <span class="func">count</span>: state.count - 1 };
+    <span class="keyword">case</span> <span class="string">'reset'</span>: <span class="keyword">return</span> { <span class="func">count</span>: 0 };
+    <span class="keyword">case</span> <span class="string">'set'</span>: <span class="keyword">return</span> { ...state, <span class="func">count</span>: action.payload };
+    <span class="keyword">default</span>: <span class="keyword">return</span> state;
+  }
+};
+
+<span class="keyword">function</span> <span class="func">Counter</span>() {
+  <span class="keyword">const</span> [state, dispatch] = <span class="func">useReducer</span>(reducer, { <span class="func">count</span>: 0 });
+
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;p&gt;Count: {state.count}&lt;/p&gt;
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">dispatch</span>({ <span class="func">type</span>: <span class="string">'increment'</span> })}&gt;+&lt;/button&gt;
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">dispatch</span>({ <span class="func">type</span>: <span class="string">'decrement'</span> })}&gt;-&lt;/button&gt;
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">dispatch</span>({ <span class="func">type</span>: <span class="string">'reset'</span> })}&gt;Reset&lt;/button&gt;
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">dispatch</span>({ <span class="func">type</span>: <span class="string">'set'</span>, <span class="func">payload</span>: 10 })}&gt;Set to 10&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">
+          6. useMemo — Cache Expensive Calculations
+        </div>
+        <p class="content-text">
+          Caches the <strong>result</strong> of an expensive calculation so it
+          only recomputes when dependencies change. Prevents unnecessary
+          recalculations on every render.
+        </p>
+        <pre><span class="keyword">import</span> { useMemo } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span class="func">FilteredList</span>({ items, filter }) {
+  <span class="comment">// Without useMemo: runs on every render</span>
+  <span class="comment">// const filtered = items.filter(item => item.includes(filter));</span>
+
+  <span class="comment">// With useMemo: only recalculates when items or filter changes</span>
+  <span class="keyword">const</span> filtered = <span class="func">useMemo</span>(() =&gt; {
+    console.<span class="func">log</span>(<span class="string">"Filtering..."</span>); <span class="comment">// Only logs when dependencies change</span>
+    <span class="keyword">return</span> items.<span class="func">filter</span>(item =&gt; item.<span class="func">includes</span>(filter));
+  }, [items, filter]); <span class="comment">// Dependencies</span>
+
+  <span class="keyword">return</span> &lt;ul&gt;{filtered.<span class="func">map</span>(item =&gt; &lt;li&gt;{item}&lt;/li&gt;)}&lt;/ul&gt;;
+}</pre>
+
+        <div class="subsection-title">
+          7. useCallback — Cache Function Definitions
+        </div>
+        <p class="content-text">
+          Caches a <strong>function definition</strong> between re-renders.
+          Useful when passing callbacks to child components that use
+          <span class="highlight">React.memo</span>.
+        </p>
+        <pre><span class="keyword">import</span> { useCallback } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span class="func">Parent</span>() {
+  <span class="keyword">const</span> [count, setCount] = <span class="func">useState</span>(0);
+
+  <span class="comment">// Without useCallback: new function every render → child re-renders</span>
+  <span class="comment">// const handleClick = () => console.log(id);</span>
+
+  <span class="comment">// With useCallback: same function reference between renders</span>
+  <span class="keyword">const</span> handleClick = <span class="func">useCallback</span>(() =&gt; {
+    console.<span class="func">log</span>(<span class="string">"Clicked"</span>);
+  }, []); <span class="comment">// No dependencies = never changes</span>
+
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;p&gt;{count}&lt;/p&gt;
+      &lt;<span class="func">MemoizedButton</span> <span class="func">onClick</span>={handleClick} /&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">
+          8. useLayoutEffect — Synchronous DOM Measurements
+        </div>
+        <p class="content-text">
+          Same as <span class="highlight">useEffect</span>, but fires
+          <strong>synchronously</strong> after DOM mutations but before the
+          browser paints. Use when you need to measure DOM elements (scroll
+          position, element size) before the user sees the screen.
+        </p>
+        <pre><span class="keyword">import</span> { useLayoutEffect, useRef, useState } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span class="func">Tooltip</span>() {
+  <span class="keyword">const</span> ref = <span class="func">useRef</span>(<span class="keyword">null</span>);
+  <span class="keyword">const</span> [height, setHeight] = <span class="func">useState</span>(0);
+
+  <span class="func">useLayoutEffect</span>(() =&gt; {
+    <span class="comment">// Measure BEFORE browser paints</span>
+    <span class="keyword">const</span> h = ref.current.<span class="func">getBoundingClientRect</span>().height;
+    <span class="func">setHeight</span>(h);
+  }, []);
+
+  <span class="keyword">return</span> &lt;div <span class="func">ref</span>={ref}&gt;Tooltip height: {height}px&lt;/div&gt;;
+}</pre>
+
+        <div class="subsection-title">
+          9. useImperativeHandle — Custom Handle for ref
+        </div>
+        <p class="content-text">
+          Customizes the instance value that is exposed to parent components
+          when using <span class="highlight">ref</span>. Lets you control what
+          the parent can do with the child's ref.
+        </p>
+        <pre><span class="keyword">import</span> { useRef, useImperativeHandle, forwardRef } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">const</span> <span class="func">Input</span> = <span class="func">forwardRef</span>((props, ref) =&gt; {
+  <span class="keyword">const</span> inputRef = <span class="func">useRef</span>(<span class="keyword">null</span>);
+
+  <span class="comment">// Only expose focus and clear methods</span>
+  <span class="func">useImperativeHandle</span>(ref, () =&gt; ({
+    <span class="func">focus</span>: () =&gt; inputRef.current.<span class="func">focus</span>(),
+    <span class="func">clear</span>: () =&gt; { inputRef.current.value = <span class="string">""</span>; }
+  }));
+
+  <span class="keyword">return</span> &lt;input <span class="func">ref</span>={inputRef} {...props} /&gt;;
+});
+
+<span class="comment">// Parent usage</span>
+<span class="keyword">function</span> <span class="func">Form</span>() {
+  <span class="keyword">const</span> inputRef = <span class="func">useRef</span>(<span class="keyword">null</span>);
+  <span class="keyword">return</span> (
+    &lt;&gt;
+      &lt;<span class="func">Input</span> <span class="func">ref</span>={inputRef} /&gt;
+      &lt;button <span class="func">onClick</span>={() =&gt; inputRef.current.<span class="func">focus</span>()}&gt;Focus&lt;/button&gt;
+      &lt;button <span class="func">onClick</span>={() =&gt; inputRef.current.<span class="func">clear</span>()}&gt;Clear&lt;/button&gt;
+    &lt;/&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Custom Hooks</div>
+        <p class="content-text">
+          You can create your own hooks by extracting reusable logic into a
+          function starting with <span class="highlight">use</span>.
+        </p>
+        <pre><span class="comment">// Custom hook: useLocalStorage</span>
+<span class="keyword">function</span> <span class="func">useLocalStorage</span>(key, initialValue) {
+  <span class="keyword">const</span> [value, setValue] = <span class="func">useState</span>(() =&gt; {
+    <span class="keyword">const</span> stored = localStorage.<span class="func">getItem</span>(key);
+    <span class="keyword">return</span> stored ? <span class="func">JSON.parse</span>(stored) : initialValue;
+  });
+
+  <span class="func">useEffect</span>(() =&gt; {
+    localStorage.<span class="func">setItem</span>(key, <span class="func">JSON.stringify</span>(value));
+  }, [key, value]);
+
+  <span class="keyword">return</span> [value, setValue];
+}
+
+<span class="comment">// Usage</span>
+<span class="keyword">function</span> <span class="func">App</span>() {
+  <span class="keyword">const</span> [name, setName] = <span class="func">useLocalStorage</span>(<span class="string">"name"</span>, <span class="string">""</span>);
+  <span class="keyword">return</span> &lt;input <span class="func">value</span>={name} <span class="func">onChange</span>={(e) =&gt; <span class="func">setName</span>(e.target.value)} /&gt;;
+}</pre>
+      </div>
+
+      <!-- 7. Event Handling -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">07</div>
+          <h2 class="section-title">Event Handling</h2>
+        </div>
+        <p class="content-text">
+          React wraps native browser events in
+          <strong>SyntheticEvents</strong> for cross-browser consistency. Event
+          handling in React follows a few key differences from vanilla HTML.
+        </p>
+
+        <div class="subsection-title">Basic Event Handling</div>
+        <pre><span class="keyword">function</span> <span class="func">Button</span>() {
+  <span class="comment">// Pass the function reference, DON'T call it</span>
+  <span class="keyword">const</span> <span class="func">handleClick</span> = () =&gt; {
+    console.<span class="func">log</span>(<span class="string">"Button clicked!"</span>);
+  };
+
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      <span class="comment">{/* ✅ Correct — pass function reference */}</span>
+      &lt;button <span class="func">onClick</span>={handleClick}&gt;Click me&lt;/button&gt;
+
+      <span class="comment">{/* ✅ Correct — inline arrow function */}</span>
+      &lt;button <span class="func">onClick</span>={() =&gt; console.<span class="func">log</span>(<span class="string">"clicked"</span>)}&gt;Click me&lt;/button&gt;
+
+      <span class="comment">{/* ❌ Wrong — this calls the function immediately! */}</span>
+      &lt;button <span class="func">onClick</span>={handleClick()}&gt;Click me&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Passing Arguments to Event Handlers</div>
+        <pre><span class="keyword">function</span> <span class="func">ItemList</span>() {
+  <span class="keyword">const</span> <span class="func">handleDelete</span> = (id) =&gt; {
+    console.<span class="func">log</span>(<span class="string">"Delete item:"</span>, id);
+  };
+
+  <span class="keyword">return</span> (
+    &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">handleDelete</span>(42)}&gt;
+      Delete
+    &lt;/button&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">SyntheticEvent Object</div>
+        <p class="content-text">
+          React's event handler receives a
+          <strong>SyntheticEvent</strong> object that wraps the native browser
+          event. It has the same interface as native events.
+        </p>
+        <pre><span class="keyword">function</span> <span class="func">Form</span>() {
+  <span class="keyword">const</span> <span class="func">handleSubmit</span> = (e) =&gt; {
+    e.<span class="func">preventDefault</span>();     <span class="comment">// Prevents page reload</span>
+    e.<span class="func">stopPropagation</span>();   <span class="comment">// Stops event from bubbling to parent</span>
+    e.<span class="func">nativeEvent</span>;        <span class="comment">// Access native browser event if needed</span>
+    console.<span class="func">log</span>(<span class="string">"Form submitted without reload!"</span>);
+  };
+
+  <span class="keyword">return</span> (
+    &lt;form <span class="func">onSubmit</span>={handleSubmit}&gt;
+      &lt;input <span class="func">type</span>=<span class="string">"text"</span> /&gt;
+      &lt;button <span class="func">type</span>=<span class="string">"submit"</span>&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Common Events in React</div>
+        <pre><span class="keyword">function</span> <span class="func">EventExamples</span>() {
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      <span class="comment">{/* Mouse Events */}</span>
+      &lt;button <span class="func">onClick</span>={() =&gt; console.<span class="func">log</span>(<span class="string">"clicked"</span>)}&gt;onClick&lt;/button&gt;
+      &lt;button <span class="func">onDoubleClick</span>={() =&gt; console.<span class="func">log</span>(<span class="string">"double clicked"</span>)}&gt;onDoubleClick&lt;/button&gt;
+      &lt;div <span class="func">onMouseEnter</span>={() =&gt; console.<span class="func">log</span>(<span class="string">"hovered"</span>)}&gt;Hover me&lt;/div&gt;
+
+      <span class="comment">{/* Keyboard Events */}</span>
+      &lt;input <span class="func">onKeyDown</span>={(e) =&gt; console.<span class="func">log</span>(e.key)} /&gt;
+      &lt;input <span class="func">onKeyUp</span>={(e) =&gt; console.<span class="func">log</span>(e.key)} /&gt;
+
+      <span class="comment">{/* Form Events */}</span>
+      &lt;input <span class="func">onChange</span>={(e) =&gt; console.<span class="func">log</span>(e.target.value)} /&gt;
+      &lt;input <span class="func">onFocus</span>={() =&gt; console.<span class="func">log</span>(<span class="string">"focused"</span>)} /&gt;
+      &lt;input <span class="func">onBlur</span>={() =&gt; console.<span class="func">log</span>(<span class="string">"blurred"</span>)} /&gt;
+
+      <span class="comment">{/* Clipboard Events */}</span>
+      &lt;input <span class="func">onCopy</span>={() =&gt; console.<span class="func">log</span>(<span class="string">"copied"</span>)} /&gt;
+      &lt;input <span class="func">onPaste</span>={() =&gt; console.<span class="func">log</span>(<span class="string">"pasted"</span>)} /&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Event Pooling</div>
+        <p class="content-text">
+          In React 16 and older, SyntheticEvents were "pooled" — properties were
+          nullified after the callback. In React 17+, this is no longer an
+          issue. You can safely access event properties asynchronously.
+        </p>
+      </div>
+
+      <!-- 8. Conditional Rendering -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">08</div>
+          <h2 class="section-title">Conditional Rendering</h2>
+        </div>
+        <p class="content-text">
+          Conditional rendering in React works the same way as conditions in
+          JavaScript. You can use <strong>if/else</strong>,
+          <strong>ternary operators</strong>, and
+          <strong>logical AND</strong> to control what renders.
+        </p>
+
+        <div class="subsection-title">Method 1: if/else Statement</div>
+        <pre><span class="keyword">function</span> <span class="func">Greeting</span>({ isLoggedIn }) {
+  <span class="keyword">if</span> (isLoggedIn) {
+    <span class="keyword">return</span> &lt;h1&gt;Welcome back!&lt;/h1&gt;;
+  }
+  <span class="keyword">return</span> &lt;h1&gt;Please sign in.&lt;/h1&gt;;
+}</pre>
+
+        <div class="subsection-title">Method 2: Ternary Operator (Inline)</div>
+        <p class="content-text">
+          Best for choosing between <strong>two elements</strong> inline.
+        </p>
+        <pre><span class="keyword">function</span> <span class="func">Dashboard</span>({ isLoggedIn }) {
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      <span class="comment">{/* Ternary: condition ? true : false */}</span>
+      {isLoggedIn ? &lt;<span class="func">UserProfile</span> /&gt; : &lt;<span class="func">LoginForm</span> /&gt;}
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Method 3: Logical AND (&&)</div>
+        <p class="content-text">
+          Best for <strong>conditionally rendering one thing</strong>. If
+          condition is true, render element. If false, nothing renders.
+        </p>
+        <pre><span class="keyword">function</span> <span class="func">Notification</span>({ message }) {
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      <span class="comment">{/* If message is truthy, render the &lt;p&gt;. Otherwise, render nothing. */}</span>
+      {message &amp;&amp; &lt;p <span class="func">className</span>=<span class="string">"notification"</span>&gt;{message}&lt;/p&gt;}
+    &lt;/div&gt;
+  );
+}
+
+<span class="comment">// ⚠️ Warning: if message is 0 (falsy but valid), it will render "0"</span>
+<span class="comment">// Fix: {message &amp;&amp; &lt;p&gt;{message}&lt;/p&gt;} → {message !== "" &amp;&amp; &lt;p&gt;{message}&lt;/p&gt;}</span></pre>
+
+        <div class="subsection-title">Method 4: Store JSX in Variables</div>
+        <pre><span class="keyword">function</span> <span class="func">App</span>({ isLoggedIn, isAdmin }) {
+  <span class="keyword">let</span> content;
+
+  <span class="keyword">if</span> (isLoggedIn &amp;&amp; isAdmin) {
+    content = &lt;<span class="func">AdminPanel</span> /&gt;;
+  } <span class="keyword">else if</span> (isLoggedIn) {
+    content = &lt;<span class="func">Dashboard</span> /&gt;;
+  } <span class="keyword">else</span> {
+    content = &lt;<span class="func">LoginForm</span> /&gt;;
+  }
+
+  <span class="keyword">return</span> &lt;div&gt;{content}&lt;/div&gt;;
+}</pre>
+
+        <div class="subsection-title">Method 5: Early Return</div>
+        <pre><span class="keyword">function</span> <span class="func">UserProfile</span>({ user, loading, error }) {
+  <span class="comment">// Guard clauses — return early for edge cases</span>
+  <span class="keyword">if</span> (loading) <span class="keyword">return</span> &lt;p&gt;Loading...&lt;/p&gt;;
+  <span class="keyword">if</span> (error) <span class="keyword">return</span> &lt;p <span class="func">className</span>=<span class="string">"error"</span>&gt;{error}&lt;/p&gt;;
+  <span class="keyword">if</span> (!user) <span class="keyword">return</span> &lt;p&gt;No user found.&lt;/p&gt;;
+
+  <span class="comment">// Main render</span>
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;h1&gt;{user.name}&lt;/h1&gt;
+      &lt;p&gt;{user.email}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Complete Example</div>
+        <pre><span class="keyword">function</span> <span class="func">App</span>() {
+  <span class="keyword">const</span> [isLoggedIn, setIsLoggedIn] = <span class="func">useState</span>(<span class="keyword">false</span>);
+  <span class="keyword">const</span> [cartItems, setCartItems] = <span class="func">useState</span>([]);
+
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      <span class="comment">{/* Show login or dashboard */}</span>
+      {isLoggedIn ? (
+        &lt;div&gt;
+          &lt;h1&gt;Dashboard&lt;/h1&gt;
+          <span class="comment">{/* Show cart count only if items exist */}</span>
+          {cartItems.length &gt; 0 &amp;&amp; (
+            &lt;p&gt;You have {cartItems.length} items in cart&lt;/p&gt;
+          )}
+          &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">setIsLoggedIn</span>(<span class="keyword">false</span>)}&gt;Logout&lt;/button&gt;
+        &lt;/div&gt;
+      ) : (
+        &lt;<span class="func">LoginForm</span> <span class="func">onLogin</span>={() =&gt; <span class="func">setIsLoggedIn</span>(<span class="keyword">true</span>)} /&gt;
+      )}
+    &lt;/div&gt;
+  );
+}</pre>
+      </div>
+
+      <!-- 9. Lists & Keys -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">09</div>
+          <h2 class="section-title">Lists and Keys</h2>
+        </div>
+        <p class="content-text">
+          Rendering lists is one of the most common tasks in React. You use
+          JavaScript's <span class="highlight">map()</span> method to transform
+          arrays into JSX elements. <strong>Keys</strong> help React identify
+          which items changed, added, or removed.
+        </p>
+
+        <div class="subsection-title">Rendering a Simple List</div>
+        <pre><span class="keyword">function</span> <span class="func">FruitList</span>() {
+  <span class="keyword">const</span> fruits = [<span class="string">"Apple"</span>, <span class="string">"Banana"</span>, <span class="string">"Cherry"</span>, <span class="string">"Mango"</span>];
+
+  <span class="keyword">return</span> (
+    &lt;ul&gt;
+      {fruits.<span class="func">map</span>((fruit, index) =&gt; (
+        &lt;li <span class="func">key</span>={index}&gt;{fruit}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Rendering a List of Objects</div>
+        <pre><span class="keyword">const</span> users = [
+  { <span class="func">id</span>: 1, <span class="func">name</span>: <span class="string">"Ahmad"</span>, <span class="func">role</span>: <span class="string">"Developer"</span> },
+  { <span class="func">id</span>: 2, <span class="func">name</span>: <span class="string">"Sara"</span>, <span class="func">role</span>: <span class="string">"Designer"</span> },
+  { <span class="func">id</span>: 3, <span class="func">name</span>: <span class="string">"Ali"</span>, <span class="func">role</span>: <span class="string">"Manager"</span> },
+];
+
+<span class="keyword">function</span> <span class="func">UserList</span>() {
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      {users.<span class="func">map</span>(user =&gt; (
+        &lt;<span class="func">UserCard</span>
+          <span class="func">key</span>={user.id}       <span class="comment">// ✅ Always use unique ID as key</span>
+          <span class="func">name</span>={user.name}
+          <span class="func">role</span>={user.role}
+        /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Why Are Keys Important?</div>
+        <p class="content-text">
+          Keys help React's <strong>reconciliation algorithm</strong> identify
+          which items in a list changed. Without keys (or with wrong keys),
+          React may re-render the entire list unnecessarily, causing performance
+          issues and bugs.
+        </p>
+        <pre><span class="comment">// ✅ Correct — unique, stable ID as key</span>
+{items.<span class="func">map</span>(item =&gt; (
+  &lt;<span class="func">Item</span> <span class="func">key</span>={item.id} {...item} /&gt;
+))}
+
+<span class="comment">// ⚠️ Okay for static lists (no reordering)</span>
+{items.<span class="func">map</span>((item, index) =&gt; (
+  &lt;<span class="func">Item</span> <span class="func">key</span>={index} {...item} /&gt;
+))}
+
+<span class="comment">// ❌ Wrong — Math.random() as key (changes every render)</span>
+{items.<span class="func">map</span>(item =&gt; (
+  &lt;<span class="func">Item</span> <span class="func">key</span>={Math.<span class="func">random</span>()} {...item} /&gt;
+))}</pre>
+
+        <div class="subsection-title">Filtering and Sorting Lists</div>
+        <pre><span class="keyword">function</span> <span class="func">FilteredUsers</span>() {
+  <span class="keyword">const</span> [search, setSearch] = <span class="func">useState</span>(<span class="string">""</span>);
+  <span class="keyword">const</span> [sortBy, setSortBy] = <span class="func">useState</span>(<span class="string">"name"</span>);
+
+  <span class="keyword">const</span> users = [
+    { <span class="func">id</span>: 1, <span class="func">name</span>: <span class="string">"Sara"</span>, <span class="func">age</span>: 28 },
+    { <span class="func">id</span>: 2, <span class="func">name</span>: <span class="string">"Ahmad"</span>, <span class="func">age</span>: 25 },
+    { <span class="func">id</span>: 3, <span class="func">name</span>: <span class="string">"Ali"</span>, <span class="func">age</span>: 30 },
+  ];
+
+  <span class="comment">// Filter + Sort (use useMemo for performance)</span>
+  <span class="keyword">const</span> filteredUsers = <span class="func">useMemo</span>(() =&gt; {
+    <span class="keyword">return</span> users
+      .<span class="func">filter</span>(u =&gt; u.name.<span class="func">toLowerCase</span>().<span class="func">includes</span>(search.<span class="func">toLowerCase</span>()))
+      .<span class="func">sort</span>((a, b) =&gt; a[sortBy] &gt; b[sortBy] ? 1 : -1);
+  }, [search, sortBy]);
+
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;input <span class="func">value</span>={search} <span class="func">onChange</span>={(e) =&gt; <span class="func">setSearch</span>(e.target.value)} <span class="func">placeholder</span>=<span class="string">"Search..."</span> /&gt;
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">setSortBy</span>(<span class="string">"age"</span>)}&gt;Sort by Age&lt;/button&gt;
+      &lt;ul&gt;
+        {filteredUsers.<span class="func">map</span>(user =&gt; (
+          &lt;li <span class="func">key</span>={user.id}&gt;{user.name} - Age: {user.age}&lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Nested Lists</div>
+        <pre><span class="keyword">const</span> categories = [
+  { <span class="func">id</span>: 1, <span class="func">name</span>: <span class="string">"Fruits"</span>, <span class="func">items</span>: [<span class="string">"Apple"</span>, <span class="string">"Banana"</span>] },
+  { <span class="func">id</span>: 2, <span class="func">name</span>: <span class="string">"Vegetables"</span>, <span class="func">items</span>: [<span class="string">"Carrot"</span>, <span class="string">"Broccoli"</span>] },
+];
+
+<span class="keyword">function</span> <span class="func">CategoryList</span>() {
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      {categories.<span class="func">map</span>(category =&gt; (
+        &lt;div <span class="func">key</span>={category.id}&gt;
+          &lt;h3&gt;{category.name}&lt;/h3&gt;
+          &lt;ul&gt;
+            {category.items.<span class="func">map</span>((item, index) =&gt; (
+              &lt;li <span class="func">key</span>={index}&gt;{item}&lt;/li&gt;
+            ))}
+          &lt;/ul&gt;
+        &lt;/div&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}</pre>
+      </div>
+
+      <!-- 10. Forms -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">10</div>
+          <h2 class="section-title">Forms & Controlled Components</h2>
+        </div>
+        <p class="content-text">
+          Forms are how users interact with your app. In React, there are two
+          ways to handle forms: <strong>Controlled Components</strong> (React
+          state is the single source of truth) and
+          <strong>Uncontrolled Components</strong> (DOM handles the state).
+        </p>
+
+        <div class="subsection-title">Controlled Components (Recommended)</div>
+        <p class="content-text">
+          In controlled components, React state controls the form input value.
+          Every keystroke updates state, which updates the input. This gives you
+          <strong>full control</strong> over the form data.
+        </p>
+        <pre><span class="keyword">function</span> <span class="func">LoginForm</span>() {
+  <span class="keyword">const</span> [email, setEmail] = <span class="func">useState</span>(<span class="string">""</span>);
+  <span class="keyword">const</span> [password, setPassword] = <span class="func">useState</span>(<span class="string">""</span>);
+
+  <span class="keyword">const</span> <span class="func">handleSubmit</span> = (e) =&gt; {
+    e.<span class="func">preventDefault</span>();
+    console.<span class="func">log</span>(<span class="string">"Email:"</span>, email, <span class="string">"Password:"</span>, password);
+  };
+
+  <span class="keyword">return</span> (
+    &lt;form <span class="func">onSubmit</span>={handleSubmit}&gt;
+      &lt;div&gt;
+        &lt;label <span class="func">htmlFor</span>=<span class="string">"email"</span>&gt;Email:&lt;/label&gt;
+        &lt;input
+          <span class="func">type</span>=<span class="string">"email"</span>
+          <span class="func">id</span>=<span class="string">"email"</span>
+          <span class="func">value</span>={email}
+          <span class="func">onChange</span>={(e) =&gt; <span class="func">setEmail</span>(e.target.value)}
+          <span class="func">required</span>
+        /&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label <span class="func">htmlFor</span>=<span class="string">"password"</span>&gt;Password:&lt;/label&gt;
+        &lt;input
+          <span class="func">type</span>=<span class="string">"password"</span>
+          <span class="func">id</span>=<span class="string">"password"</span>
+          <span class="func">value</span>={password}
+          <span class="func">onChange</span>={(e) =&gt; <span class="func">setPassword</span>(e.target.value)}
+          <span class="func">required</span>
+        /&gt;
+      &lt;/div&gt;
+      &lt;button <span class="func">type</span>=<span class="string">"submit"</span>&gt;Login&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Handling Multiple Inputs</div>
+        <p class="content-text">
+          Use a single state object and a <strong>generic handler</strong> to
+          manage multiple inputs efficiently.
+        </p>
+        <pre><span class="keyword">function</span> <span class="func">RegistrationForm</span>() {
+  <span class="keyword">const</span> [form, setForm] = <span class="func">useState</span>({
+    <span class="func">name</span>: <span class="string">""</span>,
+    <span class="func">email</span>: <span class="string">""</span>,
+    <span class="func">password</span>: <span class="string">""</span>
+  });
+
+  <span class="comment">// Generic handler for all inputs</span>
+  <span class="keyword">const</span> <span class="func">handleChange</span> = (e) =&gt; {
+    <span class="keyword">const</span> { name, value } = e.target;
+    <span class="func">setForm</span>(prev =&gt; ({
+      ...prev,
+      [name]: value  <span class="comment">// Dynamic key based on input name</span>
+    }));
+  };
+
+  <span class="keyword">const</span> <span class="func">handleSubmit</span> = (e) =&gt; {
+    e.<span class="func">preventDefault</span>();
+    console.<span class="func">log</span>(<span class="string">"Form data:"</span>, form);
+  };
+
+  <span class="keyword">return</span> (
+    &lt;form <span class="func">onSubmit</span>={handleSubmit}&gt;
+      &lt;input <span class="func">name</span>=<span class="string">"name"</span> <span class="func">value</span>={form.name} <span class="func">onChange</span>={handleChange} <span class="func">placeholder</span>=<span class="string">"Name"</span> /&gt;
+      &lt;input <span class="func">name</span>=<span class="string">"email"</span> <span class="func">value</span>={form.email} <span class="func">onChange</span>={handleChange} <span class="func">placeholder</span>=<span class="string">"Email"</span> /&gt;
+      &lt;input <span class="func">name</span>=<span class="string">"password"</span> <span class="func">type</span>=<span class="string">"password"</span> <span class="func">value</span>={form.password} <span class="func">onChange</span>={handleChange} /&gt;
+      &lt;button <span class="func">type</span>=<span class="string">"submit"</span>&gt;Register&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Form Validation</div>
+        <pre><span class="keyword">function</span> <span class="func">ValidatedForm</span>() {
+  <span class="keyword">const</span> [form, setForm] = <span class="func">useState</span>({ <span class="func">email</span>: <span class="string">""</span>, <span class="func">password</span>: <span class="string">""</span> });
+  <span class="keyword">const</span> [errors, setErrors] = <span class="func">useState</span>({});
+
+  <span class="keyword">const</span> <span class="func">validate</span> = () =&gt; {
+    <span class="keyword">const</span> newErrors = {};
+    <span class="keyword">if</span> (!form.email) newErrors.email = <span class="string">"Email is required"</span>;
+    <span class="keyword">if</span> (!form.password) newErrors.password = <span class="string">"Password is required"</span>;
+    <span class="keyword">if</span> (form.password.length &lt; 6) newErrors.password = <span class="string">"Password must be 6+ chars"</span>;
+    <span class="keyword">return</span> newErrors;
+  };
+
+  <span class="keyword">const</span> <span class="func">handleSubmit</span> = (e) =&gt; {
+    e.<span class="func">preventDefault</span>();
+    <span class="keyword">const</span> newErrors = <span class="func">validate</span>();
+    <span class="keyword">if</span> (Object.<span class="func">keys</span>(newErrors).length &gt; 0) {
+      <span class="func">setErrors</span>(newErrors);
+      <span class="keyword">return</span>;
+    }
+    <span class="func">setErrors</span>({});
+    console.<span class="func">log</span>(<span class="string">"Form submitted:"</span>, form);
+  };
+
+  <span class="keyword">return</span> (
+    &lt;form <span class="func">onSubmit</span>={handleSubmit}&gt;
+      &lt;input <span class="func">name</span>=<span class="string">"email"</span> <span class="func">value</span>={form.email} <span class="func">onChange</span>={(e) =&gt; <span class="func">setForm</span>({ ...form, <span class="func">email</span>: e.target.value })} /&gt;
+      {errors.email &amp;&amp; &lt;p <span class="func">style</span>={{ <span class="func">color</span>: <span class="string">"red"</span> }}&gt;{errors.email}&lt;/p&gt;}
+      &lt;input <span class="func">name</span>=<span class="string">"password"</span> <span class="func">type</span>=<span class="string">"password"</span> <span class="func">value</span>={form.password} <span class="func">onChange</span>={(e) =&gt; <span class="func">setForm</span>({ ...form, <span class="func">password</span>: e.target.value })} /&gt;
+      {errors.password &amp;&amp; &lt;p <span class="func">style</span>={{ <span class="func">color</span>: <span class="string">"red"</span> }}&gt;{errors.password}&lt;/p&gt;}
+      &lt;button <span class="func">type</span>=<span class="string">"submit"</span>&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Textarea, Select, and Checkbox</div>
+        <pre><span class="keyword">function</span> <span class="func">AllInputTypes</span>() {
+  <span class="keyword">const</span> [form, setForm] = <span class="func">useState</span>({
+    <span class="func">bio</span>: <span class="string">""</span>,
+    <span class="func">country</span>: <span class="string">"pk"</span>,
+    <span class="func">agree</span>: <span class="keyword">false</span>
+  });
+
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      <span class="comment">{/* Textarea — uses value like input */}</span>
+      &lt;textarea <span class="func">value</span>={form.bio} <span class="func">onChange</span>={(e) =&gt; <span class="func">setForm</span>({ ...form, <span class="func">bio</span>: e.target.value })} /&gt;
+
+      <span class="comment">{/* Select — uses value on the &lt;select&gt; tag */}</span>
+      &lt;select <span class="func">value</span>={form.country} <span class="func">onChange</span>={(e) =&gt; <span class="func">setForm</span>({ ...form, <span class="func">country</span>: e.target.value })}&gt;
+        &lt;option <span class="func">value</span>=<span class="string">"pk"</span>&gt;Pakistan&lt;/option&gt;
+        &lt;option <span class="func">value</span>=<span class="string">"in"</span>&gt;India&lt;/option&gt;
+        &lt;option <span class="func">value</span>=<span class="string">"us"</span>&gt;USA&lt;/option&gt;
+      &lt;/select&gt;
+
+      <span class="comment">{/* Checkbox — uses checked instead of value */}</span>
+      &lt;input
+        <span class="func">type</span>=<span class="string">"checkbox"</span>
+        <span class="func">checked</span>={form.agree}
+        <span class="func">onChange</span>={(e) =&gt; <span class="func">setForm</span>({ ...form, <span class="func">agree</span>: e.target.checked })}
+      /&gt;
+      I agree to the terms
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">
+          Uncontrolled Components (Reference-based)
+        </div>
+        <p class="content-text">
+          Uncontrolled components use <span class="highlight">ref</span> to
+          access DOM values directly. Simpler for quick forms, but less control.
+        </p>
+        <pre><span class="keyword">import</span> { useRef } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="keyword">function</span> <span class="func">UncontrolledForm</span>() {
+  <span class="keyword">const</span> nameRef = <span class="func">useRef</span>(<span class="keyword">null</span>);
+
+  <span class="keyword">const</span> <span class="func">handleSubmit</span> = (e) =&gt; {
+    e.<span class="func">preventDefault</span>();
+    console.<span class="func">log</span>(<span class="string">"Name:"</span>, nameRef.current.value);
+  };
+
+  <span class="keyword">return</span> (
+    &lt;form <span class="func">onSubmit</span>={handleSubmit}&gt;
+      &lt;input <span class="func">ref</span>={nameRef} <span class="func">type</span>=<span class="string">"text"</span> <span class="func">defaultValue</span>=<span class="string">"Ahmad"</span> /&gt;
+      &lt;button <span class="func">type</span>=<span class="string">"submit"</span>&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</pre>
+      </div>
+
+      <!-- 11. ROUTING (MAJOR DEEP DIVE) -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">11</div>
+          <h2 class="section-title">React Router Setup (Deep Dive)</h2>
+        </div>
+        <p class="content-text">
+          <span class="highlight">React Router</span> is the standard library
+          for routing in React. It enables
+          <strong>client-side navigation</strong> between different pages/views
+          without full page reloads. The URL changes, but only the relevant
+          component re-renders.
+        </p>
+
+        <div class="subsection-title">Step 1: Installation</div>
+        <pre><span class="comment"># Install React Router DOM</span>
+npm install react-router-dom</pre>
+
+        <div class="subsection-title">
+          Step 2: Setup BrowserRouter in main.jsx
+        </div>
+        <p class="content-text">
+          Wrap your entire app with
+          <span class="highlight">BrowserRouter</span> in the entry file (<span
+            class="highlight"
+            >main.jsx</span
+          >). This enables routing for all child components.
+        </p>
+        <pre><span class="comment">// main.jsx</span>
+<span class="keyword">import</span> { BrowserRouter } <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;
+<span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom/client'</span>;
+<span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span>;
+
+ReactDOM.<span class="func">createRoot</span>(document.<span class="func">getElementById</span>(<span class="string">'root'</span>)).<span class="func">render</span>(
+  &lt;<span class="func">BrowserRouter</span>&gt;
+    &lt;<span class="func">App</span> /&gt;
+  &lt;/<span class="func">BrowserRouter</span>&gt;
+);</pre>
+
+        <div class="subsection-title">Step 3: Define Routes in App.jsx</div>
+        <p class="content-text">
+          Use <span class="highlight">Routes</span> and
+          <span class="highlight">Route</span> components to define which URL
+          maps to which component. <span class="highlight">Routes</span> is a
+          container, <span class="highlight">Route</span> is an individual
+          mapping.
+        </p>
+        <pre><span class="comment">// App.jsx</span>
+<span class="keyword">import</span> { Routes, Route } <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;
+<span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./pages/Home'</span>;
+<span class="keyword">import</span> About <span class="keyword">from</span> <span class="string">'./pages/About'</span>;
+<span class="keyword">import</span> Contact <span class="keyword">from</span> <span class="string">'./pages/Contact'</span>;
+<span class="keyword">import</span> NotFound <span class="keyword">from</span> <span class="string">'./pages/NotFound'</span>;
+
+<span class="keyword">function</span> <span class="func">App</span>() {
+  <span class="keyword">return</span> (
+    &lt;<span class="func">Routes</span>&gt;
+      &lt;<span class="func">Route</span> <span class="func">path</span>=<span class="string">"/"</span> <span class="func">element</span>={&lt;<span class="func">Home</span> /&gt;} /&gt;
+      &lt;<span class="func">Route</span> <span class="func">path</span>=<span class="string">"/about"</span> <span class="func">element</span>={&lt;<span class="func">About</span> /&gt;} /&gt;
+      &lt;<span class="func">Route</span> <span class="func">path</span>=<span class="string">"/contact"</span> <span class="func">element</span>={&lt;<span class="func">Contact</span> /&gt;} /&gt;
+      &lt;<span class="func">Route</span> <span class="func">path</span>=<span class="string">"*"</span> <span class="func">element</span>={&lt;<span class="func">NotFound</span> /&gt;} /&gt; <span class="comment">{/* 404 catch-all */}</span>
+    &lt;/<span class="func">Routes</span>&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">
+          Step 4: Navigation with Link & NavLink
+        </div>
+        <p class="content-text">
+          Use <span class="highlight">Link</span> instead of
+          <span class="highlight">&lt;a&gt;</span> tags. Regular
+          <span class="highlight">&lt;a&gt;</span> causes a full page reload;
+          <span class="highlight">Link</span> only updates the component — SPA
+          behavior.
+        </p>
+        <pre><span class="keyword">import</span> { Link, NavLink } <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;
+
+<span class="keyword">function</span> <span class="func">Navbar</span>() {
+  <span class="keyword">return</span> (
+    &lt;nav&gt;
+      <span class="comment">{/* Basic Link — no reload, just component swap */}</span>
+      &lt;<span class="func">Link</span> <span class="func">to</span>=<span class="string">"/"</span>&gt;Home&lt;/<span class="func">Link</span>&gt;
+      &lt;<span class="func">Link</span> <span class="func">to</span>=<span class="string">"/about"</span>&gt;About&lt;/<span class="func">Link</span>&gt;
+
+      <span class="comment">{/* NavLink — adds active class automatically */}</span>
+      &lt;<span class="func">NavLink</span>
+        <span class="func">to</span>=<span class="string">"/contact"</span>
+        <span class="func">className</span>={({ isActive }) =&gt; isActive ? <span class="string">"nav-active"</span> : <span class="string">"nav-link"</span>}
+      &gt;
+        Contact
+      &lt;/<span class="func">NavLink</span>&gt;
+
+      <span class="comment">{/* Regular &lt;a&gt; — DON'T use this, causes page reload */}</span>
+      &lt;a <span class="func">href</span>=<span class="string">"/about"</span>&gt;About (wrong)&lt;/a&gt;
+    &lt;/nav&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">
+          Step 5: Programmatic Navigation with useNavigate
+        </div>
+        <p class="content-text">
+          Use <span class="highlight">useNavigate</span> hook to navigate
+          programmatically — e.g., after form submission or login.
+        </p>
+        <pre><span class="keyword">import</span> { useNavigate } <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;
+
+<span class="keyword">function</span> <span class="func">LoginForm</span>() {
+  <span class="keyword">const</span> navigate = <span class="func">useNavigate</span>();
+
+  <span class="keyword">const</span> <span class="func">handleLogin</span> = <span class="keyword">async</span> () =&gt; {
+    <span class="keyword">const</span> success = <span class="keyword">await</span> <span class="func">loginUser</span>(credentials);
+    <span class="keyword">if</span> (success) {
+      <span class="func">navigate</span>(<span class="string">"/dashboard"</span>);          <span class="comment">// Go to /dashboard</span>
+      <span class="func">navigate</span>(-1);                     <span class="comment">// Go back one page</span>
+      <span class="func">navigate</span>(<span class="string">"/dashboard"</span>, { <span class="func">replace</span>: <span class="keyword">true</span> }); <span class="comment">// Replace history</span>
+    }
+  };
+
+  <span class="keyword">return</span> &lt;button <span class="func">onClick</span>={handleLogin}&gt;Login&lt;/button&gt;;
+}</pre>
+
+        <div class="subsection-title">Step 6: Dynamic Routing & URL Params</div>
+        <p class="content-text">
+          Use <span class="highlight">:param</span> in the route path to capture
+          dynamic segments from the URL. Access them with the
+          <span class="highlight">useParams</span> hook.
+        </p>
+        <pre><span class="comment">// Route definition — :id is a dynamic segment</span>
+&lt;<span class="func">Route</span> <span class="func">path</span>=<span class="string">"/users/:id"</span> <span class="func">element</span>={&lt;<span class="func">UserProfile</span> /&gt;} /&gt;
+&lt;<span class="func">Route</span> <span class="func">path</span>=<span class="string">"/posts/:postId/comments/:commentId"</span> <span class="func">element</span>={&lt;<span class="func">Comment</span> /&gt;} /&gt;
+
+<span class="comment">// UserProfile.jsx</span>
+<span class="keyword">import</span> { useParams } <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;
+
+<span class="keyword">export default</span> <span class="keyword">function</span> <span class="func">UserProfile</span>() {
+  <span class="keyword">const</span> { id } = <span class="func">useParams</span>(); <span class="comment">// Extracts :id from URL</span>
+  <span class="keyword">return</span> &lt;h1&gt;Viewing User {id}&lt;/h1&gt;;
+}
+
+<span class="comment">// Link to dynamic route</span>
+&lt;<span class="func">Link</span> <span class="func">to</span>={<span class="string">`/users/</span>${user.id}<span class="string">`</span>}&gt;View Profile&lt;/<span class="func">Link</span>&gt;</pre>
+
+        <div class="subsection-title">
+          Step 7: Query Parameters (Search Params)
+        </div>
+        <pre><span class="keyword">import</span> { useSearchParams } <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;
+
+<span class="keyword">function</span> <span class="func">SearchPage</span>() {
+  <span class="keyword">const</span> [searchParams, setSearchParams] = <span class="func">useSearchParams</span>();
+  <span class="keyword">const</span> query = searchParams.<span class="func">get</span>(<span class="string">"q"</span>);  <span class="comment">// ?q=react</span>
+  <span class="keyword">const</span> page = searchParams.<span class="func">get</span>(<span class="string">"page"</span>); <span class="comment">// ?page=2</span>
+
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;p&gt;Search: {query}, Page: {page}&lt;/p&gt;
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">setSearchParams</span>({ <span class="func">q</span>: <span class="string">"vue"</span>, <span class="func">page</span>: <span class="string">"1"</span> })}&gt;
+        Search Vue
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Step 8: Nested Routes & Outlet</div>
+        <p class="content-text">
+          Nested routes let you define child routes inside a parent route. The
+          parent renders an <span class="highlight">Outlet</span> where child
+          routes appear.
+        </p>
+        <pre><span class="comment">// App.jsx — Define nested routes</span>
+&lt;<span class="func">Route</span> <span class="func">path</span>=<span class="string">"/dashboard"</span> <span class="func">element</span>={&lt;<span class="func">DashboardLayout</span> /&gt;}&gt;
+  &lt;<span class="func">Route</span> <span class="func">path</span>=<span class="string">"stats"</span> <span class="func">element</span>={&lt;<span class="func">Stats</span> /&gt;} /&gt;
+  &lt;<span class="func">Route</span> <span class="func">path</span>=<span class="string">"settings"</span> <span class="func">element</span>={&lt;<span class="func">Settings</span> /&gt;} /&gt;
+  &lt;<span class="func">Route</span> <span class="func">index</span> <span class="func">element</span>={&lt;<span class="func">DashboardHome</span> /&gt;} /&gt; <span class="comment">{/* Default child */}</span>
+&lt;/<span class="func">Route</span>&gt;
+
+<span class="comment">// DashboardLayout.jsx — Renders child routes in Outlet</span>
+<span class="keyword">import</span> { Outlet, NavLink } <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;
+
+<span class="keyword">export default</span> <span class="keyword">function</span> <span class="func">DashboardLayout</span>() {
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;nav&gt;
+        &lt;<span class="func">NavLink</span> <span class="func">to</span>=<span class="string">"/dashboard/stats"</span>&gt;Stats&lt;/<span class="func">NavLink</span>&gt;
+        &lt;<span class="func">NavLink</span> <span class="func">to</span>=<span class="string">"/dashboard/settings"</span>&gt;Settings&lt;/<span class="func">NavLink</span>&gt;
+      &lt;/nav&gt;
+      &lt;h1&gt;Dashboard&lt;/h1&gt;
+      &lt;<span class="func">Outlet</span> /&gt; <span class="comment">{/* Child routes render here */}</span>
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">
+          Step 9: Layout Routes & Shared Layouts
+        </div>
+        <pre><span class="comment">// Shared layout for multiple routes</span>
+&lt;<span class="func">Route</span> <span class="func">element</span>={&lt;<span class="func">MainLayout</span> /&gt;}&gt;
+  &lt;<span class="func">Route</span> <span class="func">path</span>=<span class="string">"/"</span> <span class="func">element</span>={&lt;<span class="func">Home</span> /&gt;} /&gt;
+  &lt;<span class="func">Route</span> <span class="func">path</span>=<span class="string">"/about"</span> <span class="func">element</span>={&lt;<span class="func">About</span> /&gt;} /&gt;
+  &lt;<span class="func">Route</span> <span class="func">path</span>=<span class="string">"/contact"</span> <span class="func">element</span>={&lt;<span class="func">Contact</span> /&gt;} /&gt;
+&lt;/<span class="func">Route</span>&gt;
+
+<span class="comment">// MainLayout.jsx — Navbar + Footer shared across routes</span>
+<span class="keyword">import</span> { Outlet } <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;
+
+<span class="keyword">export default</span> <span class="keyword">function</span> <span class="func">MainLayout</span>() {
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;<span class="func">Navbar</span> /&gt;
+      &lt;main&gt;&lt;<span class="func">Outlet</span> /&gt;&lt;/main&gt;
+      &lt;<span class="func">Footer</span> /&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">
+          Step 10: Protected Routes (Auth Guard)
+        </div>
+        <pre><span class="keyword">import</span> { Navigate } <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;
+
+<span class="comment">// ProtectedRoute component</span>
+<span class="keyword">function</span> <span class="func">ProtectedRoute</span>({ children, isLoggedIn }) {
+  <span class="keyword">if</span> (!isLoggedIn) {
+    <span class="keyword">return</span> &lt;<span class="func">Navigate</span> <span class="func">to</span>=<span class="string">"/login"</span> <span class="func">replace</span> /&gt;;
+  }
+  <span class="keyword">return</span> children;
+}
+
+<span class="comment">// Usage in App.jsx</span>
+&lt;<span class="func">Route</span>
+  <span class="func">path</span>=<span class="string">"/dashboard"</span>
+  <span class="func">element</span>={
+    &lt;<span class="func">ProtectedRoute</span> <span class="func">isLoggedIn</span>={isLoggedIn}&gt;
+      &lt;<span class="func">Dashboard</span> /&gt;
+    &lt;/<span class="func">ProtectedRoute</span>&gt;
+  }
+/&gt;</pre>
+      </div>
+
+      <!-- 12. Context API -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">12</div>
+          <h2 class="section-title">React Context API</h2>
+        </div>
+        <p class="content-text">
+          <span class="highlight">Context API</span> provides a way to pass data
+          through the component tree <strong>without prop drilling</strong>. It
+          creates a "global" state accessible by any component that needs it —
+          perfect for theme, authentication, language, etc.
+        </p>
+
+        <div class="subsection-title">What is Prop Drilling?</div>
+        <p class="content-text">
+          Prop drilling is when you pass props through multiple intermediate
+          components that don't even use them, just to reach a deeply nested
+          child. Context API solves this problem.
+        </p>
+        <pre><span class="comment">// ❌ Without Context — Prop Drilling</span>
+&lt;<span class="func">App</span> <span class="func">theme</span>=<span class="string">"dark"</span>&gt;                    <span class="comment">// passes theme</span>
+  &lt;<span class="func">Layout</span>&gt;                               <span class="comment">// doesn't use theme, just forwards it</span>
+    &lt;<span class="func">Sidebar</span> <span class="func">theme</span>={theme}&gt;             <span class="comment">// doesn't use theme, just forwards it</span>
+      &lt;<span class="func">Button</span> <span class="func">theme</span>={theme} /&gt;          <span class="comment">// finally uses theme!</span>
+    &lt;/<span class="func">Sidebar</span>&gt;
+  &lt;/<span class="func">Layout</span>&gt;
+&lt;/<span class="func">App</span>&gt;</pre>
+
+        <div class="subsection-title">Creating Context — Step by Step</div>
+        <pre><span class="keyword">import</span> { createContext, useContext, useState } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="comment">// Step 1: Create Context with a default value</span>
+<span class="keyword">const</span> ThemeContext = <span class="func">createContext</span>(<span class="keyword">null</span>);
+
+<span class="comment">// Step 2: Create Provider Component</span>
+<span class="keyword">function</span> <span class="func">ThemeProvider</span>({ children }) {
+  <span class="keyword">const</span> [theme, setTheme] = <span class="func">useState</span>(<span class="string">"light"</span>);
+
+  <span class="keyword">const</span> <span class="func">toggleTheme</span> = () =&gt; {
+    <span class="func">setTheme</span>(prev =&gt; prev === <span class="string">"light"</span> ? <span class="string">"dark"</span> : <span class="string">"light"</span>);
+  };
+
+  <span class="keyword">return</span> (
+    &lt;<span class="func">ThemeContext.Provider</span> <span class="func">value</span>={{ theme, toggleTheme }}&gt;
+      {children}
+    &lt;/<span class="func">ThemeContext.Provider</span>&gt;
+  );
+}
+
+<span class="comment">// Step 3: Wrap app with Provider (in main.jsx or App.jsx)</span>
+<span class="keyword">function</span> <span class="func">App</span>() {
+  <span class="keyword">return</span> (
+    &lt;<span class="func">ThemeProvider</span>&gt;
+      &lt;<span class="func">Layout</span> /&gt;
+    &lt;/<span class="func">ThemeProvider</span>&gt;
+  );
+}
+
+<span class="comment">// Step 4: Any child consumes context (no prop drilling!)</span>
+<span class="keyword">function</span> <span class="func">ThemedButton</span>() {
+  <span class="keyword">const</span> { theme, toggleTheme } = <span class="func">useContext</span>(ThemeContext);
+
+  <span class="keyword">return</span> (
+    &lt;button
+      <span class="func">onClick</span>={toggleTheme}
+      <span class="func">className</span>={theme === <span class="string">"dark"</span> ? <span class="string">"btn-dark"</span> : <span class="string">"btn-light"</span>}
+    &gt;
+      Toggle Theme (Current: {theme})
+    &lt;/button&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Multiple Contexts</div>
+        <pre><span class="comment">// You can have multiple providers for different global states</span>
+<span class="keyword">function</span> <span class="func">App</span>() {
+  <span class="keyword">return</span> (
+    &lt;<span class="func">AuthProvider</span>&gt;
+      &lt;<span class="func">ThemeProvider</span>&gt;
+        &lt;<span class="func">LanguageProvider</span>&gt;
+          &lt;<span class="func">Layout</span> /&gt;
+        &lt;/<span class="func">LanguageProvider</span>&gt;
+      &lt;/<span class="func">ThemeProvider</span>&gt;
+    &lt;/<span class="func">AuthProvider</span>&gt;
+  );
+}
+
+<span class="comment">// Each component can consume any context it needs</span>
+<span class="keyword">function</span> <span class="func">Header</span>() {
+  <span class="keyword">const</span> { user } = <span class="func">useContext</span>(AuthContext);
+  <span class="keyword">const</span> { theme } = <span class="func">useContext</span>(ThemeContext);
+  <span class="keyword">const</span> { lang } = <span class="func">useContext</span>(LanguageContext);
+
+  <span class="keyword">return</span> &lt;h1&gt;{user.name} - {theme} - {lang}&lt;/h1&gt;;
+}</pre>
+      </div>
+
+      <!-- 13. Error Boundaries -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">13</div>
+          <h2 class="section-title">Error Boundaries</h2>
+        </div>
+        <p class="content-text">
+          <span class="highlight">Error Boundaries</span> are React components
+          that <strong>catch JavaScript errors</strong> anywhere in their child
+          component tree, log those errors, and display a fallback UI instead of
+          crashing the entire app. They require a
+          <strong>Class Component</strong> (no hook equivalent yet).
+        </p>
+
+        <div class="subsection-title">Why Error Boundaries?</div>
+        <p class="content-text">
+          Without error boundaries, if one component throws an error, the entire
+          app crashes. Error boundaries let you gracefully handle errors and
+          show a user-friendly message.
+        </p>
+
+        <div class="subsection-title">Creating an Error Boundary</div>
+        <pre><span class="keyword">class</span> <span class="func">ErrorBoundary</span> <span class="keyword">extends</span> React.<span class="func">Component</span> {
+  <span class="keyword">constructor</span>(props) {
+    <span class="keyword">super</span>(props);
+    <span class="keyword">this</span>.state = { <span class="func">hasError</span>: <span class="keyword">false</span>, <span class="func">error</span>: <span class="keyword">null</span> };
+  }
+
+  <span class="comment">// Static method to update state when error occurs</span>
+  <span class="keyword">static</span> <span class="func">getDerivedStateFromError</span>(error) {
+    <span class="keyword">return</span> { <span class="func">hasError</span>: <span class="keyword">true</span>, <span class="func">error</span>: error };
+  }
+
+  <span class="comment">// Log error to error reporting service</span>
+  <span class="func">componentDidCatch</span>(error, errorInfo) {
+    console.<span class="func">error</span>(<span class="string">"Error caught:"</span>, error);
+    console.<span class="func">error</span>(<span class="string">"Component stack:"</span>, errorInfo.componentStack);
+  }
+
+  <span class="func">render</span>() {
+    <span class="keyword">if</span> (<span class="keyword">this</span>.state.hasError) {
+      <span class="keyword">return</span> (
+        &lt;div <span class="func">className</span>=<span class="string">"error-fallback"</span>&gt;
+          &lt;h2&gt;Something went wrong.&lt;/h2&gt;
+          &lt;p&gt;{<span class="keyword">this</span>.state.error?.message}&lt;/p&gt;
+          &lt;button <span class="func">onClick</span>={() =&gt; <span class="keyword">this</span>.<span class="func">setState</span>({ <span class="func">hasError</span>: <span class="keyword">false</span> })}&gt;
+            Try Again
+          &lt;/button&gt;
+        &lt;/div&gt;
+      );
+    }
+    <span class="keyword">return</span> <span class="keyword">this</span>.props.children;
+  }
+}</pre>
+
+        <div class="subsection-title">Using Error Boundary</div>
+        <pre><span class="comment">// Wrap components that might error</span>
+<span class="keyword">function</span> <span class="func">App</span>() {
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;<span class="func">Header</span> /&gt;
+      &lt;<span class="func">ErrorBoundary</span>&gt;
+        &lt;<span class="func">UserProfile</span> /&gt; <span class="comment">{/* If this crashes, only this section shows fallback */}</span>
+      &lt;/<span class="func">ErrorBoundary</span>&gt;
+      &lt;<span class="func">Footer</span> /&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">
+          What Error Boundaries Catch vs Don't Catch
+        </div>
+        <pre><span class="comment">// ✅ CATCHES:
+// - Rendering errors (in lifecycle methods, constructors, render)
+// - Errors in child components
+
+// ❌ DOES NOT CATCH:
+// - Event handler errors (use try/catch for those)
+// - Async code (setTimeout, promises)
+// - Server-side rendering (SSR)
+// - Errors in the error boundary itself</span></pre>
+      </div>
+
+      <!-- 14. HOC -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">14</div>
+          <h2 class="section-title">Higher-Order Components (HOC)</h2>
+        </div>
+        <p class="content-text">
+          A <span class="highlight">Higher-Order Component (HOC)</span> is a
+          function that takes a component and returns a
+          <strong>new enhanced component</strong>. It's a pattern for reusing
+          component logic — like a "wrapper" that adds extra functionality.
+        </p>
+
+        <div class="subsection-title">What is an HOC?</div>
+        <pre><span class="comment">// HOC = function that takes a component, returns a new component</span>
+<span class="keyword">const</span> <span class="func">withAuth</span> = (WrappedComponent) =&gt; {
+  <span class="keyword">return</span> (props) =&gt; {
+    <span class="keyword">const</span> isLoggedIn = <span class="func">checkAuth</span>();
+    <span class="keyword">if</span> (!isLoggedIn) <span class="keyword">return</span> &lt;<span class="func">Navigate</span> <span class="func">to</span>=<span class="string">"/login"</span> /&gt;;
+    <span class="keyword">return</span> &lt;<span class="func">WrappedComponent</span> {...props} /&gt;;
+  };
+};
+
+<span class="comment">// Usage</span>
+<span class="keyword">export default</span> <span class="func">withAuth</span>(Dashboard); <span class="comment">// Dashboard is now protected</span></pre>
+
+        <div class="subsection-title">Real-World HOC Examples</div>
+        <pre><span class="comment">// 1. withLoading — Shows loading spinner</span>
+<span class="keyword">const</span> <span class="func">withLoading</span> = (WrappedComponent) =&gt; {
+  <span class="keyword">return</span> ({ isLoading, ...props }) =&gt; {
+    <span class="keyword">if</span> (isLoading) <span class="keyword">return</span> &lt;p&gt;Loading...&lt;/p&gt;;
+    <span class="keyword">return</span> &lt;<span class="func">WrappedComponent</span> {...props} /&gt;;
+  };
+};
+
+<span class="comment">// 2. withLogger — Logs props to console</span>
+<span class="keyword">const</span> <span class="func">withLogger</span> = (WrappedComponent) =&gt; {
+  <span class="keyword">return</span> (props) =&gt; {
+    console.<span class="func">log</span>(<span class="string">"Props:"</span>, props);
+    <span class="keyword">return</span> &lt;<span class="func">WrappedComponent</span> {...props} /&gt;;
+  };
+};
+
+<span class="comment">// 3. withWindowSize — Passes window dimensions</span>
+<span class="keyword">const</span> <span class="func">withWindowSize</span> = (WrappedComponent) =&gt; {
+  <span class="keyword">return</span> (props) =&gt; {
+    <span class="keyword">const</span> [size, setSize] = <span class="func">useState</span>({
+      <span class="func">width</span>: window.innerWidth,
+      <span class="func">height</span>: window.innerHeight
+    });
+
+    <span class="func">useEffect</span>(() =&gt; {
+      <span class="keyword">const</span> <span class="func">handleResize</span> = () =&gt; <span class="func">setSize</span>({
+        <span class="func">width</span>: window.innerWidth,
+        <span class="func">height</span>: window.innerHeight
+      });
+      window.<span class="func">addEventListener</span>(<span class="string">"resize"</span>, handleResize);
+      <span class="keyword">return</span> () =&gt; window.<span class="func">removeEventListener</span>(<span class="string">"resize"</span>, handleResize);
+    }, []);
+
+    <span class="keyword">return</span> &lt;<span class="func">WrappedComponent</span> {...props} <span class="func">windowSize</span>={size} /&gt;;
+  };
+};
+
+<span class="comment">// Usage</span>
+<span class="keyword">function</span> <span class="func">Dashboard</span>({ windowSize }) {
+  <span class="keyword">return</span> &lt;p&gt;Window: {windowSize.width}x{windowSize.height}&lt;/p&gt;;
+}
+<span class="keyword">export default</span> <span class="func">withWindowSize</span>(Dashboard);</pre>
+
+        <div class="subsection-title">HOC vs Custom Hooks</div>
+        <pre><span class="comment">// Feature        HOC                            Custom Hook
+// Pattern        Component wrapping             Function extraction
+// Use case       Add logic to existing component Add reusable stateful logic
+// Returns        New Component                  Data/functions
+// Modern?        ⚠️ Legacy pattern              ✅ Modern (preferred)
+// Example        withAuth(Dashboard)            useAuth()</span></pre>
+      </div>
+
+      <!-- 15. Fragments, Portals, Refs -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">15</div>
+          <h2 class="section-title">Fragments, Portals, Refs</h2>
+        </div>
+
+        <div class="subsection-title">Fragments</div>
+        <p class="content-text">
+          <span class="highlight">Fragments</span> let you group multiple
+          elements without adding an extra node to the DOM. Useful when you need
+          to return multiple elements but don't want a wrapper div (which can
+          break CSS layouts like tables or flexbox).
+        </p>
+        <pre><span class="comment">// ❌ Problem — extra div breaks table layout</span>
+&lt;tr&gt;
+  &lt;div&gt;                    <span class="comment">{/* This div breaks &lt;tr&gt; layout */}</span>
+    &lt;td&gt;Row 1, Col 1&lt;/td&gt;
+    &lt;td&gt;Row 1, Col 2&lt;/td&gt;
+  &lt;/div&gt;
+&lt;/tr&gt;
+
+<span class="comment">// ✅ Solution — Fragment (renders nothing in DOM)</span>
+&lt;tr&gt;
+  &lt;&gt;
+    &lt;td&gt;Row 1, Col 1&lt;/td&gt;
+    &lt;td&gt;Row 1, Col 2&lt;/td&gt;
+  &lt;/&gt;
+&lt;/tr&gt;
+
+<span class="comment">// ✅ Named Fragment (when you need a key prop)</span>
+&lt;<span class="keyword">import</span> { Fragment } <span class="keyword">from</span> <span class="string">'react'</span>&gt;
+&lt;<span class="func">Fragment</span> <span class="func">key</span>={item.id}&gt;
+  &lt;td&gt;{item.name}&lt;/td&gt;
+  &lt;td&gt;{item.value}&lt;/td&gt;
+&lt;/<span class="func">Fragment</span>&gt;</pre>
+
+        <div class="subsection-title">Portals</div>
+        <p class="content-text">
+          <span class="highlight">Portals</span> let you render a component's UI
+          into a <strong>different DOM node</strong> outside of the React
+          component tree. Perfect for modals, tooltips, dropdowns, and overlays
+          that need to break out of parent CSS (like
+          <span class="highlight">overflow: hidden</span> or
+          <span class="highlight">z-index</span> issues).
+        </p>
+        <pre><span class="keyword">import</span> { createPortal } <span class="keyword">from</span> <span class="string">'react-dom'</span>;
+
+<span class="keyword">function</span> <span class="func">Modal</span>({ isOpen, onClose, children }) {
+  <span class="keyword">if</span> (!isOpen) <span class="keyword">return</span> <span class="keyword">null</span>;
+
+  <span class="comment">// Render modal into a different DOM node (e.g., #portal-root)</span>
+  <span class="keyword">return</span> <span class="func">createPortal</span>(
+    &lt;div <span class="func">className</span>=<span class="string">"modal-overlay"</span> <span class="func">onClick</span>={onClose}&gt;
+      &lt;div <span class="func">className</span>=<span class="string">"modal-content"</span> <span class="func">onClick</span>={(e) =&gt; e.<span class="func">stopPropagation</span>()}&gt;
+        {children}
+        &lt;button <span class="func">onClick</span>={onClose}&gt;Close&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;,
+    document.<span class="func">getElementById</span>(<span class="string">"portal-root"</span>) <span class="comment">// Target DOM node</span>
+  );
+}
+
+<span class="comment">// In index.html, add: &lt;div id="portal-root"&gt;&lt;/div&gt;</span></pre>
+
+        <div class="subsection-title">Refs — DOM Access</div>
+        <p class="content-text">
+          <span class="highlight">Refs</span> (references) give you direct
+          access to a DOM element or a child component's instance. They are
+          useful for managing focus, text selection, media playback, triggering
+          animations, or integrating with third-party DOM libraries.
+        </p>
+        <pre><span class="keyword">import</span> { useRef, useEffect, forwardRef, useImperativeHandle } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="comment">// 1. DOM Ref — Focus an input</span>
+<span class="keyword">function</span> <span class="func">SearchBar</span>() {
+  <span class="keyword">const</span> inputRef = <span class="func">useRef</span>(<span class="keyword">null</span>);
+
+  <span class="func">useEffect</span>(() =&gt; {
+    inputRef.current.<span class="func">focus</span>(); <span class="comment">// Auto-focus on mount</span>
+  }, []);
+
+  <span class="keyword">return</span> &lt;input <span class="func">ref</span>={inputRef} <span class="func">placeholder</span>=<span class="string">"Search..."</span> /&gt;;
+}
+
+<span class="comment">// 2. Ref with Timer — Store interval ID</span>
+<span class="keyword">function</span> <span class="func">Stopwatch</span>() {
+  <span class="keyword">const</span> [time, setTime] = <span class="func">useState</span>(0);
+  <span class="keyword">const</span> intervalRef = <span class="func">useRef</span>(<span class="keyword">null</span>);
+
+  <span class="keyword">const</span> <span class="func">start</span> = () =&gt; {
+    intervalRef.current = <span class="func">setInterval</span>(() =&gt; {
+      <span class="func">setTime</span>(prev =&gt; prev + 1);
+    }, 1000);
+  };
+
+  <span class="keyword">const</span> <span class="func">stop</span> = () =&gt; {
+    <span class="func">clearInterval</span>(intervalRef.current);
+  };
+
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;p&gt;Time: {time}s&lt;/p&gt;
+      &lt;button <span class="func">onClick</span>={start}&gt;Start&lt;/button&gt;
+      &lt;button <span class="func">onClick</span>={stop}&gt;Stop&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+      </div>
+
+      <!-- 16. Performance -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">16</div>
+          <h2 class="section-title">Performance Optimization</h2>
+        </div>
+        <p class="content-text">
+          React is fast by default, but as your app grows, you need optimization
+          techniques to prevent unnecessary re-renders and reduce bundle size.
+        </p>
+
+        <div class="subsection-title">
+          React.memo — Prevent Unnecessary Re-renders
+        </div>
+        <p class="content-text">
+          Wraps a component so it only re-renders when its
+          <strong>props change</strong>. Without memo, a component re-renders
+          every time its parent re-renders, even if its props haven't changed.
+        </p>
+        <pre><span class="comment">// Without memo — re-renders every time parent re-renders</span>
+<span class="keyword">function</span> <span class="func">UserCard</span>({ name }) {
+  console.<span class="func">log</span>(<span class="string">"UserCard rendered"</span>); <span class="comment">// Logs on every parent re-render</span>
+  <span class="keyword">return</span> &lt;div&gt;{name}&lt;/div&gt;;
+}
+
+<span class="comment">// With memo — only re-renders when 'name' prop changes</span>
+<span class="keyword">const</span> UserCard = React.<span class="func">memo</span>(({ name }) =&gt; {
+  console.<span class="func">log</span>(<span class="string">"UserCard rendered"</span>); <span class="comment">// Only logs when name changes</span>
+  <span class="keyword">return</span> &lt;div&gt;{name}&lt;/div&gt;;
+});
+
+<span class="comment">// With useMemo for expensive child props</span>
+<span class="keyword">function</span> <span class="func">Parent</span>() {
+  <span class="keyword">const</span> [count, setCount] = <span class="func">useState</span>(0);
+
+  <span class="keyword">const</span> userData = <span class="func">useMemo</span>(() =&gt; ({
+    <span class="func">name</span>: <span class="string">"Ahmad"</span>,
+    <span class="func">expensiveValue</span>: <span class="func">heavyComputation</span>()
+  }), []); <span class="comment">// Object reference stays stable</span>
+
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;p&gt;{count}&lt;/p&gt;
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">setCount</span>(count + 1)}&gt;+&lt;/button&gt;
+      &lt;<span class="func">UserCard</span> {...userData} /&gt; <span class="comment">{/* Won't re-render when count changes */}</span>
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Lazy Loading — Code Splitting</div>
+        <p class="content-text">
+          Load components <strong>only when needed</strong> (on-demand). This
+          reduces the initial bundle size and speeds up loading time.
+        </p>
+        <pre><span class="keyword">import</span> { lazy, Suspense } <span class="keyword">from</span> <span class="string">'react'</span>;
+
+<span class="comment">// Lazy load a component — only imported when rendered</span>
+<span class="keyword">const</span> AdminDashboard = <span class="func">lazy</span>(() =&gt; <span class="keyword">import</span>(<span class="string">'./pages/AdminDashboard'</span>));
+<span class="keyword">const</span> Settings = <span class="func">lazy</span>(() =&gt; <span class="keyword">import</span>(<span class="string">'./pages/Settings'</span>));
+
+<span class="keyword">function</span> <span class="func">App</span>() {
+  <span class="keyword">return</span> (
+    &lt;<span class="func">Suspense</span> <span class="func">fallback</span>={&lt;p&gt;Loading...&lt;/p&gt;}&gt;
+      &lt;<span class="func">Routes</span>&gt;
+        &lt;<span class="func">Route</span> <span class="func">path</span>=<span class="string">"/admin"</span> <span class="func">element</span>={&lt;<span class="func">AdminDashboard</span> /&gt;} /&gt;
+        &lt;<span class="func">Route</span> <span class="func">path</span>=<span class="string">"/settings"</span> <span class="func">element</span>={&lt;<span class="func">Settings</span> /&gt;} /&gt;
+      &lt;/<span class="func">Routes</span>&gt;
+    &lt;/<span class="func">Suspense</span>&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">useCallback + useMemo Combo</div>
+        <pre><span class="comment">// Prevent child re-renders by memoizing both the callback and data</span>
+<span class="keyword">function</span> <span class="func">Parent</span>() {
+  <span class="keyword">const</span> [items, setItems] = <span class="func">useState</span>([]);
+  <span class="keyword">const</span> [filter, setFilter] = <span class="func">useState</span>(<span class="string">""</span>);
+
+  <span class="keyword">const</span> handleClick = <span class="func">useCallback</span>(() =&gt; {
+    <span class="func">setItems</span>(prev =&gt; [...prev, <span class="string">"new item"</span>]);
+  }, []); <span class="comment">// Never changes</span>
+
+  <span class="keyword">const</span> filteredItems = <span class="func">useMemo</span>(() =&gt; {
+    <span class="keyword">return</span> items.<span class="func">filter</span>(item =&gt; item.<span class="func">includes</span>(filter));
+  }, [items, filter]);
+
+  <span class="keyword">return</span> &lt;<span class="func">ItemList</span> <span class="func">items</span>={filteredItems} <span class="func">onAdd</span>={handleClick} /&gt;;
+}</pre>
+
+        <div class="subsection-title">Performance Tips Summary</div>
+        <ul>
+          <li>
+            Use <span class="highlight">React.memo</span> for pure components
+            that receive same props frequently.
+          </li>
+          <li>
+            Use <span class="highlight">useMemo</span> for expensive
+            calculations.
+          </li>
+          <li>
+            Use <span class="highlight">useCallback</span> for functions passed
+            to memoized children.
+          </li>
+          <li>
+            Use <span class="highlight">React.lazy</span> +
+            <span class="highlight">Suspense</span> for route-based code
+            splitting.
+          </li>
+          <li>
+            Use <span class="highlight">useDeferredValue</span> and
+            <span class="highlight">useTransition</span> (React 18) for
+            non-blocking updates.
+          </li>
+          <li>
+            Avoid inline objects/functions in JSX props (they create new
+            references every render).
+          </li>
+          <li>
+            Use <span class="highlight">React DevTools Profiler</span> to
+            identify what's causing re-renders.
+          </li>
+        </ul>
+      </div>
+
+      <!-- 17. Testing -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">17</div>
+          <h2 class="section-title">Testing in React</h2>
+        </div>
+        <p class="content-text">
+          Testing ensures your app works correctly. React uses
+          <span class="highlight">Jest</span> as the test runner and
+          <span class="highlight">React Testing Library (RTL)</span> for
+          component testing. The philosophy:
+          <strong>test how users interact with your app</strong>, not
+          implementation details.
+        </p>
+
+        <div class="subsection-title">Setup</div>
+        <pre><span class="comment"># Jest and RTL come pre-installed with Vite React template</span>
+<span class="comment"># If not installed:</span>
+npm install --save-dev @testing-library/react @testing-library/jest-dom</pre>
+
+        <div class="subsection-title">Basic Test Example</div>
+        <pre><span class="keyword">import</span> { render, screen, fireEvent } <span class="keyword">from</span> <span class="string">'@testing-library/react'</span>;
+<span class="keyword">import</span> '@testing-library/jest-dom';
+<span class="keyword">import</span> Counter <span class="keyword">from</span> <span class="string">'./Counter'</span>;
+
+<span class="func">test</span>(<span class="string">'increments counter on click'</span>, () =&gt; {
+  <span class="func">render</span>(&lt;<span class="func">Counter</span> /&gt;);
+
+  <span class="comment">// Find elements</span>
+  <span class="keyword">const</span> btn = screen.<span class="func">getByRole</span>(<span class="string">'button'</span>, { <span class="func">name</span>: <span class="string">/click me/i</span> });
+  <span class="keyword">const</span> countText = screen.<span class="func">getByText</span>(<span class="string">/clicked 0 times/i</span>);
+
+  <span class="comment">// Assert initial state</span>
+  <span class="func">expect</span>(countText).<span class="func">toBeInTheDocument</span>();
+
+  <span class="comment">// Simulate click</span>
+  <span class="func">fireEvent</span>.<span class="func">click</span>(btn);
+
+  <span class="comment">// Assert new state</span>
+  <span class="func">expect</span>(screen.<span class="func">getByText</span>(<span class="string">/clicked 1 times/i</span>)).<span class="func">toBeInTheDocument</span>();
+});</pre>
+
+        <div class="subsection-title">Testing Async Behavior</div>
+        <pre><span class="keyword">import</span> { render, screen, waitFor } <span class="keyword">from</span> <span class="string">'@testing-library/react'</span>;
+
+<span class="func">test</span>(<span class="string">'loads user data'</span>, <span class="keyword">async</span> () =&gt; {
+  <span class="func">render</span>(&lt;<span class="func">UserProfile</span> <span class="func">id</span>={1} /&gt;);
+
+  <span class="comment">// Wait for async element to appear</span>
+  <span class="keyword">await</span> <span class="func">waitFor</span>(() =&gt; {
+    <span class="func">expect</span>(screen.<span class="func">getByText</span>(<span class="string">"Ahmad"</span>)).<span class="func">toBeInTheDocument</span>();
+  });
+});</pre>
+
+        <div class="subsection-title">Common RTL Queries</div>
+        <pre><span class="comment">// By Role (recommended — accessible)
+screen.getByRole('button', { name: 'Submit' })
+
+// By Text
+screen.getByText('Hello World')
+
+// By Label
+screen.getByLabelText('Email')
+
+// By Placeholder
+screen.getByPlaceholderText('Enter email...')
+
+// By Display Value
+screen.getByDisplayValue('initial text')
+
+// Query variants (return null instead of throwing):
+// getBy* → throws if not found
+// queryBy* → returns null if not found (useful for asserting absence)
+// findBy* → returns promise (useful for async elements)</span></pre>
+      </div>
+
+      <!-- 18. Redux -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">18</div>
+          <h2 class="section-title">State Management with Redux</h2>
+        </div>
+        <p class="content-text">
+          <span class="highlight">Redux</span> is a predictable state container
+          for JavaScript apps. When your app grows complex and you need state
+          shared across many components (and Context API isn't enough), Redux
+          provides a <strong>centralized store</strong> with strict rules for
+          state updates.
+        </p>
+
+        <div class="subsection-title">When to Use Redux?</div>
+        <ul>
+          <li>Large app with many components sharing the same state</li>
+          <li>Complex state logic with multiple sub-values</li>
+          <li>
+            You need state persistence, undo/redo, or time-travel debugging
+          </li>
+          <li>Multiple components need to update the same data</li>
+        </ul>
+
+        <div class="subsection-title">
+          Modern Redux with Redux Toolkit (RTK)
+        </div>
+        <p class="content-text">
+          <span class="highlight">Redux Toolkit</span> is the official,
+          recommended way to write Redux. It simplifies store setup, reduces
+          boilerplate, and includes Immer for safe "mutating" syntax.
+        </p>
+        <pre><span class="comment"># Install Redux Toolkit and React-Redux</span>
+npm install @reduxjs/toolkit react-redux</pre>
+
+        <div class="subsection-title">Step 1: Create a Slice</div>
+        <pre><span class="comment">// features/counter/counterSlice.js</span>
+<span class="keyword">import</span> { createSlice } <span class="keyword">from</span> <span class="string">'@reduxjs/toolkit'</span>;
+
+<span class="keyword">const</span> counterSlice = <span class="func">createSlice</span>({
+  <span class="func">name</span>: <span class="string">'counter'</span>,
+  <span class="func">initialState</span>: { <span class="func">value</span>: 0 },
+  <span class="func">reducers</span>: {
+    <span class="func">increment</span>: (state) =&gt; { state.value += 1; },
+    <span class="func">decrement</span>: (state) =&gt; { state.value -= 1; },
+    <span class="func">incrementByAmount</span>: (state, action) =&gt; { state.value += action.payload; },
+  }
+});
+
+<span class="keyword">export const</span> { increment, decrement, incrementByAmount } = counterSlice.actions;
+<span class="keyword">export default</span> counterSlice.reducer;</pre>
+
+        <div class="subsection-title">Step 2: Configure Store</div>
+        <pre><span class="comment">// app/store.js</span>
+<span class="keyword">import</span> { configureStore } <span class="keyword">from</span> <span class="string">'@reduxjs/toolkit'</span>;
+<span class="keyword">import</span> counterReducer <span class="keyword">from</span> <span class="string">'../features/counter/counterSlice'</span>;
+
+<span class="keyword">export const</span> store = <span class="func">configureStore</span>({
+  <span class="func">reducer</span>: {
+    <span class="func">counter</span>: counterReducer,
+    <span class="comment">// Add more slices here: user: userReducer, posts: postsReducer</span>
+  }
+});</pre>
+
+        <div class="subsection-title">Step 3: Provide Store to App</div>
+        <pre><span class="comment">// main.jsx</span>
+<span class="keyword">import</span> { Provider } <span class="keyword">from</span> <span class="string">'react-redux'</span>;
+<span class="keyword">import</span> { store } <span class="keyword">from</span> <span class="string">'./app/store'</span>;
+
+ReactDOM.<span class="func">createRoot</span>(document.<span class="func">getElementById</span>(<span class="string">'root'</span>)).<span class="func">render</span>(
+  &lt;<span class="func">Provider</span> <span class="func">store</span>={store}&gt;
+    &lt;<span class="func">App</span> /&gt;
+  &lt;/<span class="func">Provider</span>&gt;
+);</pre>
+
+        <div class="subsection-title">Step 4: Use in Components</div>
+        <pre><span class="keyword">import</span> { useSelector, useDispatch } <span class="keyword">from</span> <span class="string">'react-redux'</span>;
+<span class="keyword">import</span> { increment, decrement, incrementByAmount } <span class="keyword">from</span> <span class="string">'./counterSlice'</span>;
+
+<span class="keyword">function</span> <span class="func">Counter</span>() {
+  <span class="keyword">const</span> count = <span class="func">useSelector</span>((state) =&gt; state.counter.value);
+  <span class="keyword">const</span> dispatch = <span class="func">useDispatch</span>();
+
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">dispatch</span>(<span class="func">increment</span>())}&gt;+&lt;/button&gt;
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">dispatch</span>(<span class="func">decrement</span>())}&gt;-&lt;/button&gt;
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">dispatch</span>(<span class="func">incrementByAmount</span>(5))}&gt;+5&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Async Thunks (API Calls)</div>
+        <pre><span class="keyword">import</span> { createSlice, createAsyncThunk } <span class="keyword">from</span> <span class="string">'@reduxjs/toolkit'</span>;
+
+<span class="comment">// Create async thunk</span>
+<span class="keyword">export const</span> fetchUsers = <span class="func">createAsyncThunk</span>(
+  <span class="string">'users/fetchUsers'</span>,
+  <span class="keyword">async</span> () =&gt; {
+    <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="func">fetch</span>(<span class="string">'https://jsonplaceholder.typicode.com/users'</span>);
+    <span class="keyword">return</span> <span class="keyword">await</span> response.<span class="func">json</span>();
+  }
+);
+
+<span class="keyword">const</span> usersSlice = <span class="func">createSlice</span>({
+  <span class="func">name</span>: <span class="string">'users'</span>,
+  <span class="func">initialState</span>: { <span class="func">data</span>: [], <span class="func">loading</span>: <span class="keyword">false</span>, <span class="func">error</span>: <span class="keyword">null</span> },
+  <span class="func">extraReducers</span>: (builder) =&gt; {
+    builder
+      .<span class="func">addCase</span>(fetchUsers.<span class="func">pending</span>, (state) =&gt; { state.loading = <span class="keyword">true</span>; })
+      .<span class="func">addCase</span>(fetchUsers.<span class="func">fulfilled</span>, (state, action) =&gt; {
+        state.loading = <span class="keyword">false</span>;
+        state.data = action.payload;
+      })
+      .<span class="func">addCase</span>(fetchUsers.<span class="func">rejected</span>, (state, action) =&gt; {
+        state.loading = <span class="keyword">false</span>;
+        state.error = action.error.message;
+      });
+  }
+});</pre>
+      </div>
+
+      <!-- 19. TypeScript -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">19</div>
+          <h2 class="section-title">React and TypeScript</h2>
+        </div>
+        <p class="content-text">
+          <span class="highlight">TypeScript</span> adds static type checking to
+          JavaScript. It catches bugs at compile time, improves developer
+          experience with autocompletion, and makes code self-documenting. React
+          + TypeScript is the industry standard for large projects.
+        </p>
+
+        <div class="subsection-title">Setup</div>
+        <pre><span class="comment"># Create a new React project with TypeScript</span>
+npm create vite@latest my-app -- --template react-ts</pre>
+
+        <div class="subsection-title">Typing Props</div>
+        <pre><span class="comment">// Define props interface</span>
+<span class="keyword">interface</span> <span class="func">UserCardProps</span> {
+  name: <span class="func">string</span>;
+  age: <span class="func">number</span>;
+  email?: <span class="func">string</span>;        <span class="comment">// Optional prop</span>
+  isAdmin?: <span class="func">boolean</span>;
+  onSave: (data: <span class="func">string</span>) =&gt; <span class="func">void</span>;  <span class="comment">// Function prop</span>
+}
+
+<span class="comment">// Use the interface</span>
+<span class="keyword">function</span> <span class="func">UserCard</span>({ name, age, email, isAdmin = <span class="keyword">false</span>, onSave }: <span class="func">UserCardProps</span>) {
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;h2&gt;{name}&lt;/h2&gt;
+      &lt;p&gt;Age: {age}&lt;/p&gt;
+      {email &amp;&amp; &lt;p&gt;Email: {email}&lt;/p&gt;}
+      {isAdmin &amp;&amp; &lt;span&gt;Admin&lt;/span&gt;}
+      &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">onSave</span>(name)}&gt;Save&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+
+        <div class="subsection-title">Typing State</div>
+        <pre><span class="comment">// useState with TypeScript</span>
+<span class="keyword">const</span> [count, setCount] = <span class="func">useState</span>&lt;<span class="func">number</span>&gt;(0);
+<span class="keyword">const</span> [name, setName] = <span class="func">useState</span>&lt;<span class="func">string</span>&gt;(<span class="string">""</span>);
+<span class="keyword">const</span> [user, setUser] = <span class="func">useState</span>&lt;<span class="func">User</span> | <span class="keyword">null</span>&gt;(<span class="keyword">null</span>);
+<span class="keyword">const</span> [items, setItems] = <span class="func">useState</span>&lt;<span class="func">Item</span>[]&gt;([]);</pre>
+
+        <div class="subsection-title">Typing Events</div>
+        <pre><span class="comment">// Form events</span>
+<span class="keyword">const</span> <span class="func">handleSubmit</span> = (e: React.<span class="func">FormEvent</span>&lt;<span class="func">HTMLFormElement</span>&gt;) =&gt; {
+  e.<span class="func">preventDefault</span>();
+};
+
+<span class="comment">// Input events</span>
+<span class="keyword">const</span> <span class="func">handleChange</span> = (e: React.<span class="func">ChangeEvent</span>&lt;<span class="func">HTMLInputElement</span>&gt;) =&gt; {
+  <span class="func">setValue</span>(e.target.value);
+};
+
+<span class="comment">// Click events</span>
+<span class="keyword">const</span> <span class="func">handleClick</span> = (e: React.<span class="func">MouseEvent</span>&lt;<span class="func">HTMLButtonElement</span>&gt;) =&gt; {
+  console.<span class="func">log</span>(e.target);
+};</pre>
+
+        <div class="subsection-title">Typing useRef, useReducer, Context</div>
+        <pre><span class="comment">// useRef</span>
+<span class="keyword">const</span> inputRef = <span class="func">useRef</span>&lt;<span class="func">HTMLInputElement</span>&gt;(<span class="keyword">null</span>);
+
+<span class="comment">// useReducer</span>
+<span class="keyword">interface</span> <span class="func">State</span> { count: <span class="func">number</span>; }
+<span class="keyword">type</span> <span class="func">Action</span> = { <span class="func">type</span>: <span class="string">'increment'</span> } | { <span class="func">type</span>: <span class="string">'decrement'</span> };
+
+<span class="keyword">const</span> <span class="func">reducer</span> = (state: <span class="func">State</span>, action: <span class="func">Action</span>): <span class="func">State</span> =&gt; { ... };
+
+<span class="comment">// Context</span>
+<span class="keyword">interface</span> <span class="func">ThemeContextType</span> {
+  theme: <span class="func">string</span>;
+  toggleTheme: () =&gt; <span class="func">void</span>;
+}
+<span class="keyword">const</span> ThemeContext = <span class="func">createContext</span>&lt;<span class="func">ThemeContextType</span> | <span class="keyword">undefined</span>&gt;(<span class="keyword">undefined</span>);</pre>
+      </div>
+
+      <!-- 20. Advanced -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">20</div>
+          <h2 class="section-title">Advanced Topics & Best Practices</h2>
+        </div>
+
+        <div class="subsection-title">Next.js — The React Framework</div>
+        <p class="content-text">
+          <span class="highlight">Next.js</span> is the most popular React
+          framework. It enables <strong>Server-Side Rendering (SSR)</strong>,
+          <strong>Static Site Generation (SSG)</strong>, file-based routing, API
+          routes, and automatic code splitting. It's the standard for production
+          React apps.
+        </p>
+        <pre><span class="comment"># Create a Next.js project</span>
+npx create-next-app@latest my-app
+
+<span class="comment">// Next.js uses a 'pages' or 'app' directory for routing</span>
+// app/page.tsx        → /
+// app/about/page.tsx  → /about
+// app/blog/[slug]/page.tsx → /blog/:slug</pre>
+
+        <div class="subsection-title">Server Components (React 18+)</div>
+        <pre><span class="comment">// Server Component (default in Next.js App Router)</span>
+<span class="comment">// Runs on the server, not the client — smaller bundle!</span>
+<span class="keyword">async function</span> <span class="func">UserProfile</span>({ userId }) {
+  <span class="comment">// Can directly use async/await (no useEffect needed!)</span>
+  <span class="keyword">const</span> user = <span class="keyword">await</span> <span class="func">fetchUser</span>(userId);
+
+  <span class="keyword">return</span> &lt;h1&gt;{user.name}&lt;/h1&gt;;
+}
+
+<span class="comment">// Client Component (needs 'use client' directive)</span>
+<span class="string">"use client"</span>;
+<span class="keyword">function</span> <span class="func">Counter</span>() {
+  <span class="keyword">const</span> [count, setCount] = <span class="func">useState</span>(0); <span class="comment">// Hooks need client component</span>
+  <span class="keyword">return</span> &lt;button <span class="func">onClick</span>={() =&gt; <span class="func">setCount</span>(count+1)}&gt;{count}&lt;/button&gt;;
+}</pre>
+
+        <div class="subsection-title">Security Best Practices</div>
+        <ul>
+          <li>
+            <strong
+              >Never use
+              <span class="highlight">dangerouslySetInnerHTML</span></strong
+            >
+            with untrusted user input — XSS vulnerability.
+          </li>
+          <li><strong>Sanitize user input</strong> before rendering.</li>
+          <li>Use <strong>HTTPS</strong> for all API calls.</li>
+          <li>
+            Don't store secrets in frontend code — use environment variables.
+          </li>
+          <li>
+            Use
+            <span class="highlight">Content Security Policy (CSP)</span>
+            headers.
+          </li>
+        </ul>
+
+        <div class="subsection-title">Environment Variables</div>
+        <pre><span class="comment">// .env.local (never commit this file!)</span>
+VITE_API_URL=https://api.example.com
+VITE_API_KEY=secret-key-here
+
+<span class="comment">// Access in code</span>
+<span class="keyword">const</span> apiUrl = <span class="keyword">import</span>.meta.env.VITE_API_URL;</pre>
+      </div>
+
+      <!-- 21. Deploying -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">21</div>
+          <h2 class="section-title">Deploying React Apps</h2>
+        </div>
+        <p class="content-text">
+          Deploying makes your app live on the internet for everyone to use. The
+          process is: build the app → upload the build folder to a hosting
+          platform.
+        </p>
+
+        <div class="subsection-title">Step 1: Build the App</div>
+        <pre><span class="comment"># Creates an optimized production build in 'dist' folder</span>
+npm run build
+<span class="comment"># This minifies code, tree-shakes unused imports, optimizes images</span></pre>
+
+        <div class="subsection-title">Step 2: Deploy to a Platform</div>
+
+        <div class="sub-sub-title">Vercel (Recommended)</div>
+        <pre><span class="comment"># Install Vercel CLI</span>
+npm install -g vercel
+
+<span class="comment"># Deploy</span>
+vercel
+
+<span class="comment"># Or connect your GitHub repo to Vercel dashboard for auto-deploys</span></pre>
+
+        <div class="sub-sub-title">Netlify</div>
+        <pre><span class="comment"># Option 1: Drag and drop 'dist' folder to netlify.com/drop</span>
+
+<span class="comment"># Option 2: Install Netlify CLI</span>
+npm install -g netlify-cli
+netlify deploy --prod --dir=dist</pre>
+
+        <div class="sub-sub-title">GitHub Pages</div>
+        <pre><span class="comment"># Install gh-pages</span>
+npm install --save-dev gh-pages
+
+<span class="comment"># Add to package.json: "homepage": "https://username.github.io/repo-name"</span>
+<span class="comment"># Add deploy script: "predeploy": "npm run build", "deploy": "gh-pages -d dist"</span>
+npm run deploy</pre>
+
+        <div class="subsection-title">Deployment Checklist</div>
+        <ul>
+          <li>
+            Run <span class="highlight">npm run build</span> and fix any
+            warnings
+          </li>
+          <li>
+            Test the production build locally:
+            <span class="highlight">npm run preview</span>
+          </li>
+          <li>Set environment variables on the hosting platform</li>
+          <li>Enable HTTPS (usually automatic on Vercel/Netlify)</li>
+          <li>Configure custom domain if needed</li>
+          <li>Set up automatic deployments from GitHub/GitLab</li>
+        </ul>
+      </div>
+
+      <!-- 22. Ecosystem -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">22</div>
+          <h2 class="section-title">React Ecosystem & Libraries</h2>
+        </div>
+        <p class="content-text">
+          React has a massive ecosystem of libraries. Here are the most popular
+          ones categorized by use case.
+        </p>
+
+        <div class="subsection-title">Data Fetching</div>
+        <ul>
+          <li>
+            <span class="highlight">React Query (TanStack Query)</span> — Server
+            state management, caching, automatic refetching, loading/error
+            states.
+          </li>
+          <li>
+            <span class="highlight">Axios</span> — Promise-based HTTP client for
+            API calls.
+          </li>
+          <li>
+            <span class="highlight">SWR</span> — Stale-while-revalidate data
+            fetching by Vercel.
+          </li>
+        </ul>
+
+        <div class="subsection-title">Forms</div>
+        <ul>
+          <li>
+            <span class="highlight">React Hook Form</span> — High performance,
+            minimal re-rendering, easy validation.
+          </li>
+          <li>
+            <span class="highlight">Formik</span> — The original form library
+            (slower for large forms).
+          </li>
+          <li>
+            <span class="highlight">Zod</span> — TypeScript-first schema
+            validation.
+          </li>
+        </ul>
+
+        <div class="subsection-title">UI Libraries</div>
+        <ul>
+          <li>
+            <span class="highlight">Material-UI (MUI)</span> — Google's Material
+            Design components.
+          </li>
+          <li>
+            <span class="highlight">Chakra UI</span> — Simple, modular,
+            accessible UI components.
+          </li>
+          <li>
+            <span class="highlight">Ant Design</span> — Enterprise-level UI
+            library.
+          </li>
+          <li>
+            <span class="highlight">Radix UI</span> — Unstyled, accessible
+            component primitives.
+          </li>
+          <li>
+            <span class="highlight">Shadcn/ui</span> — Beautifully designed
+            components you copy-paste.
+          </li>
+        </ul>
+
+        <div class="subsection-title">State Management</div>
+        <ul>
+          <li>
+            <span class="highlight">Redux Toolkit</span> — Industry standard for
+            large apps.
+          </li>
+          <li>
+            <span class="highlight">Zustand</span> — Lightweight, minimal API,
+            easy to learn.
+          </li>
+          <li>
+            <span class="highlight">Jotai</span> — Atomic state management (like
+            Recoil).
+          </li>
+          <li>
+            <span class="highlight">Recoil</span> — State management by
+            Facebook.
+          </li>
+        </ul>
+
+        <div class="subsection-title">Animation</div>
+        <ul>
+          <li>
+            <span class="highlight">Framer Motion</span> — Production-ready
+            motion library for React.
+          </li>
+          <li>
+            <span class="highlight">React Spring</span> — Spring-physics based
+            animations.
+          </li>
+        </ul>
+
+        <div class="subsection-title">Utilities</div>
+        <ul>
+          <li>
+            <span class="highlight">Lodash</span> — Utility functions (debounce,
+            throttle, deep clone).
+          </li>
+          <li>
+            <span class="highlight">date-fns</span> — Modern date utility
+            library.
+          </li>
+          <li>
+            <span class="highlight">clsx</span> — Conditional className utility.
+          </li>
+        </ul>
+      </div>
+
+      <!-- 23. TAILWIND CSS (NEW) -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">23</div>
+          <h2 class="section-title">Tailwind CSS in React</h2>
+        </div>
+        <p class="content-text">
+          <span class="highlight">Tailwind CSS</span> is a utility-first CSS
+          framework that lets you build designs directly in your markup using
+          utility classes. Instead of writing custom CSS, you compose small
+          utility classes like <span class="highlight">flex</span>,
+          <span class="highlight">p-4</span>,
+          <span class="highlight">bg-blue-500</span>. It's the most popular CSS
+          solution in modern React.
+        </p>
+
+        <div class="subsection-title">Step 1: Installation with Vite</div>
+        <pre><span class="comment"># Install Tailwind CSS and its dependencies</span>
+npm install -D tailwindcss @tailwindcss/vite
+
+<span class="comment"># In vite.config.js, add the Tailwind plugin:</span>
+<span class="keyword">import</span> { defineConfig } <span class="keyword">from</span> <span class="string">'vite'</span>
+<span class="keyword">import</span> react <span class="keyword">from</span> <span class="string">'@vitejs/plugin-react'</span>
+<span class="keyword">import</span> tailwindcss <span class="keyword">from</span> <span class="string">'@tailwindcss/vite'</span>
+
+<span class="keyword">export default</span> <span class="func">defineConfig</span>({
+  <span class="func">plugins</span>: [<span class="func">react</span>(), <span class="func">tailwindcss</span>()],
+})
+
+<span class="comment"># In your main CSS file (index.css), add:</span>
+@import <span class="string">"tailwindcss"</span>;</pre>
+
+        <div class="subsection-title">
+          Tailwind Utility Classes — Quick Reference
+        </div>
+        <div class="sub-sub-title">Layout & Flexbox</div>
+        <pre><span class="comment">{/* Flexbox */}</span>
+&lt;div <span class="func">className</span>=<span class="string">"flex justify-center items-center"</span>&gt;Centered&lt;/div&gt;
+&lt;div <span class="func">className</span>=<span class="string">"flex justify-between items-center"</span>&gt;Space Between&lt;/div&gt;
+&lt;div <span class="func">className</span>=<span class="string">"flex flex-col gap-4"</span>&gt;Column with gap&lt;/div&gt;
+&lt;div <span class="func">className</span>=<span class="string">"grid grid-cols-3 gap-4"</span>&gt;3 Column Grid&lt;/div&gt;
+&lt;div <span class="func">className</span>=<span class="string">"flex flex-wrap"</span>&gt;Wrap items&lt;/div&gt;</pre>
+
+        <div class="sub-sub-title">Spacing & Sizing</div>
+        <pre>&lt;div <span class="func">className</span>=<span class="string">"p-4"</span>&gt;Padding 1rem&lt;/div&gt;
+&lt;div <span class="func">className</span>=<span class="string">"px-6 py-2"</span>&gt;Horizontal 1.5rem, Vertical 0.5rem&lt;/div&gt;
+&lt;div <span class="func">className</span>=<span class="string">"m-4"</span>&gt;Margin 1rem&lt;/div&gt;
+&lt;div <span class="func">className</span>=<span class="string">"w-full h-screen"</span>&gt;Full width, full viewport height&lt;/div&gt;
+&lt;div <span class="func">className</span>=<span class="string">"max-w-md mx-auto"</span>&gt;Max width, centered&lt;/div&gt;</pre>
+
+        <div class="sub-sub-title">Colors & Backgrounds</div>
+        <pre>&lt;div <span class="func">className</span>=<span class="string">"bg-blue-500 text-white"</span>&gt;Blue background, white text&lt;/div&gt;
+&lt;div <span class="func">className</span>=<span class="string">"bg-gray-100 dark:bg-gray-800"</span>&gt;Dark mode support&lt;/div&gt;
+&lt;div <span class="func">className</span>=<span class="string">"text-red-500 font-bold"</span>&gt;Red text, bold&lt;/div&gt;
+&lt;div <span class="func">className</span>=<span class="string">"border border-gray-300 rounded-lg"</span>&gt;Bordered card&lt;/div&gt;</pre>
+
+        <div class="sub-sub-title">Typography</div>
+        <pre>&lt;h1 <span class="func">className</span>=<span class="string">"text-4xl font-bold"</span>&gt;Large Bold Heading&lt;/h1&gt;
+&lt;p <span class="func">className</span>=<span class="string">"text-sm text-gray-500"</span>&gt;Small gray text&lt;/p&gt;
+&lt;p <span class="func">className</span>=<span class="string">"text-center leading-relaxed"</span>&gt;Centered with line height&lt;/p&gt;</pre>
+
+        <div class="sub-sub-title">Responsive Design</div>
+        <pre><span class="comment">{/* Prefix with sm:, md:, lg:, xl: for breakpoints */}</span>
+&lt;div <span class="func">className</span>=<span class="string">"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"</span>&gt;
+  Responsive Grid
+&lt;/div&gt;
+&lt;div <span class="func">className</span>=<span class="string">"text-sm md:text-base lg:text-lg"</span>&gt;
+  Responsive text size
+&lt;/div&gt;</pre>
+
+        <div class="sub-sub-title">Hover & States</div>
+        <pre>&lt;button <span class="func">className</span>=<span class="string">"bg-blue-500 hover:bg-blue-700 active:bg-blue-900 transition-colors"</span>&gt;
+  Button with hover effect
+&lt;/button&gt;
+&lt;input <span class="func">className</span>=<span class="string">"focus:ring-2 focus:ring-blue-500 focus:outline-none"</span> /&gt;
+&lt;div <span class="func">className</span>=<span class="string">"opacity-50 hover:opacity-100 transition-opacity"</span>&gt;
+  Fade on hover
+&lt;/div&gt;</pre>
+
+        <div class="subsection-title">Complete Example — React + Tailwind</div>
+        <pre><span class="keyword">function</span> <span class="func">Card</span>({ title, description, image }) {
+  <span class="keyword">return</span> (
+    &lt;div <span class="func">className</span>=<span class="string">"bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"</span>&gt;
+      &lt;img <span class="func">src</span>={image} <span class="func">alt</span>={title} <span class="func">className</span>=<span class="string">"w-full h-48 object-cover"</span> /&gt;
+      &lt;div <span class="func">className</span>=<span class="string">"p-6"</span>&gt;
+        &lt;h2 <span class="func">className</span>=<span class="string">"text-xl font-bold text-gray-800 mb-2"</span>&gt;{title}&lt;/h2&gt;
+        &lt;p <span class="func">className</span>=<span class="string">"text-gray-600 leading-relaxed"</span>&gt;{description}&lt;/p&gt;
+        &lt;button <span class="func">className</span>=<span class="string">"mt-4 bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"</span>&gt;
+          Read More
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+<span class="comment">// Responsive Navbar</span>
+<span class="keyword">function</span> <span class="func">Navbar</span>() {
+  <span class="keyword">return</span> (
+    &lt;nav <span class="func">className</span>=<span class="string">"bg-gray-900 text-white px-6 py-4"</span>&gt;
+      &lt;div <span class="func">className</span>=<span class="string">"max-w-7xl mx-auto flex justify-between items-center"</span>&gt;
+        &lt;h1 <span class="func">className</span>=<span class="string">"text-xl font-bold"</span>&gt;Logo&lt;/h1&gt;
+        &lt;div <span class="func">className</span>=<span class="string">"hidden md:flex gap-6"</span>&gt;
+          &lt;a <span class="func">href</span>=<span class="string">"/"</span> <span class="func">className</span>=<span class="string">"hover:text-blue-400 transition-colors"</span>&gt;Home&lt;/a&gt;
+          &lt;a <span class="func">href</span>=<span class="string">"/about"</span> <span class="func">className</span>=<span class="string">"hover:text-blue-400 transition-colors"</span>&gt;About&lt;/a&gt;
+          &lt;a <span class="func">href</span>=<span class="string">"/contact"</span> <span class="func">className</span>=<span class="string">"hover:text-blue-400 transition-colors"</span>&gt;Contact&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/nav&gt;
+  );
+}</pre>
+      </div>
+
+      <div class="footer">
+        Generated for React Developers &bull; Complete Masterclass Reference
+      </div>
+    </div>
+  </body>
+</html>
