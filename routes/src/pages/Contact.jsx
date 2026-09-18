@@ -1,13 +1,10 @@
-import { useState } from "react";
-
-export default function Contact() {
-  const [count, setCount] = useState(0);
-
-  console.log("Component rendered");
-
+function Contact() {
   return (
-    <button onClick={() => setCount(count + 1)}>
-      {count}
-    </button>
+    <div className="p-6">
+      <h1 className="text-3xl font-bold">Contact Page</h1>
+      <p className="mt-2">This is the Contact page.</p>
+    </div>
   );
 }
+
+export default Contact;
