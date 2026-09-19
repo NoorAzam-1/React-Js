@@ -14,6 +14,9 @@ function Navbar() {
         <li>
           <Link to="/contact" className="hover:text-amber-400">Contact</Link>
         </li>
+        <li>
+          <Link to="/events" className="hover:text-amber-400">Events</Link>
+        </li>
       </ul>
     </nav>
   );
